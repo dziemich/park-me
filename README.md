@@ -18,3 +18,6 @@ TODOs:
 - [x] REST API for parking meteres
 - [ ] renaming parent module to parking system
 - [ ] SOAP for parking places
+
+
+https://drive.google.com/file/d/1liBxtRQuON9J-kv0vIKr_XE-u3pf7d82/view?usp=sharing
