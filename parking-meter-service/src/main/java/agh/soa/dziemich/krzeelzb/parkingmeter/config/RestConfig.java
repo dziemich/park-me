@@ -1,9 +1,9 @@
-package agh.soa.dziemich.krzeelzb.config;
+package agh.soa.dziemich.krzeelzb.parkingmeter.config;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-@ApplicationPath("/rest")
+@ApplicationPath("/parkingmeter")
 public class RestConfig extends Application {
 
 }

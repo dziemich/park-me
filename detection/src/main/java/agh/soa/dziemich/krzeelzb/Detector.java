@@ -17,7 +17,7 @@ public class Detector {
   @EJB
   QueueSender queueSender;
 
-  @Schedule(second = "*", minute = "*/1", hour = "*", persistent = false)
+//  @Schedule(second = "*", minute = "*/1", hour = "*", persistent = false)
   public void doWork() {
     System.out.println("lala");
     List<ParkingPlace> parkingPlaces = parkingMeterDbOp.fetchExpiredParkingPlaces();

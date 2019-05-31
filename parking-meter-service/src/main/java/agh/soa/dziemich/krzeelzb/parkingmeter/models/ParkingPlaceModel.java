@@ -1,7 +1,5 @@
-package agh.soa.dziemich.krzeelzb.models;
+package agh.soa.dziemich.krzeelzb.parkingmeter.models;
 
-
-import java.time.Duration;
 
 public class ParkingPlaceModel {
 

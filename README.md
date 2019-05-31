@@ -8,7 +8,7 @@ TODOs:
 
 - [x] JMS Integration
 - [x] Expired Parking Spots Detection
-- [ ] Receiving messages
+- [x] Receiving messages
 - [ ] JAAS
 - [ ] Frontend
 - [x] Modularization
