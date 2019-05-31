@@ -9,30 +9,32 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>db</artifactId>
-
+  <artifactId>detection</artifactId>
   <packaging>war</packaging>
-
   <build>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>11</source>
-          <target>11</target>
+          <source>8</source>
+          <target>8</target>
         </configuration>
       </plugin>
     </plugins>
   </build>
-
   <dependencies>
+    <dependency>
+      <groupId>org.jboss.spec.javax.jms</groupId>
+      <artifactId>jboss-jms-api_2.0_spec</artifactId>
+      <version>1.0.0.Final</version>
+    </dependency>
+
     <dependency>
       <groupId>agh.soa.dziemich.krzeelzb</groupId>
       <artifactId>db-api</artifactId>
       <version>1.0</version>
       <scope>compile</scope>
     </dependency>
-  
   </dependencies>
 </project>

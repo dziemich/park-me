@@ -47,6 +47,7 @@
         <module>db</module>
         <module>db-api</module>
         <module>parking-meter-service</module>
+      <module>detection</module>
     </modules>
 
     <dependencies>

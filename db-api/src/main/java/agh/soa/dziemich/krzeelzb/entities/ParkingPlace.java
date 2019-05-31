@@ -1,6 +1,7 @@
 package agh.soa.dziemich.krzeelzb.entities;
 
-import java.time.LocalDate;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
@@ -21,7 +22,7 @@ import javax.persistence.Table;
 
 })
 
-public class ParkingPlace extends Model {
+public class ParkingPlace extends Model implements Serializable {
 
   private String street;
   private Boolean taken;
