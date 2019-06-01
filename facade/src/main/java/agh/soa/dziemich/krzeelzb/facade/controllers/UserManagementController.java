@@ -16,7 +16,7 @@ public class UserManagementController {
   @POST
   @Path("/update")
   public Response addOne(){
-//    parkingMeterDbOp.markPlaceAsTaken(ppm.getId(), ppm.getDuration());
+//    parkingMeterDbOp.markPlaceAsPaid(ppm.getId(), ppm.getDuration());
 //    System.out.println("sratatata");
     return Response.ok().build();
   }

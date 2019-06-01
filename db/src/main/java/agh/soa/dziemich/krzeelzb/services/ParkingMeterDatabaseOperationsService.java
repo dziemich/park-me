@@ -18,7 +18,7 @@ public class ParkingMeterDatabaseOperationsService implements
   ParkingPlaceDao parkingPlaceDao;
 
   @Override
-  public void markPlaceAsTaken(Long id, Long duration) {
+  public void markPlaceAsPaid(Long id, Long duration) {
     List<ParkingPlace> pp = parkingPlaceDao.findOne(id);
     if (!pp.isEmpty()) {
       pp.get(0).setExpirationTime(pp.get(0).getExpirationTime().plusSeconds(duration));
@@ -31,5 +31,21 @@ public class ParkingMeterDatabaseOperationsService implements
         .stream()
         .filter(pp -> pp.getExpirationTime().isBefore(LocalDateTime.now()))
         .collect(Collectors.toList());
+  }
+
+  @Override
+  public void markPlaceAsTaken(Long id) {
+    List<ParkingPlace> pp = parkingPlaceDao.findOne(id);
+    if (!pp.isEmpty()) {
+      pp.get(0).setTaken(true);
+    }
+  }
+
+  @Override
+  public void markPlaceAsFree(Long id) {
+    List<ParkingPlace> pp = parkingPlaceDao.findOne(id);
+    if (!pp.isEmpty()) {
+      pp.get(0).setTaken(false);
+    }
   }
 }

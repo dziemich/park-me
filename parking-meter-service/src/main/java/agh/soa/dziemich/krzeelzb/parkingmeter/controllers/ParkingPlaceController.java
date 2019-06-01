@@ -17,7 +17,7 @@ public class ParkingPlaceController {
   @POST
   @Path("/{id}")
   public Response addOne(@PathParam("id") Long id, ParkingPlaceModel ppm){
-    parkingMeterDbOp.markPlaceAsTaken(id, ppm.getDuration());
+    parkingMeterDbOp.markPlaceAsPaid(id, ppm.getDuration());
     return Response.ok().build();
   }
 
