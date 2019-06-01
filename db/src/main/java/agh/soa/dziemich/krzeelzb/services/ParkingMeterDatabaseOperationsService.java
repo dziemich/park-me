@@ -21,7 +21,6 @@ public class ParkingMeterDatabaseOperationsService implements
   public void markPlaceAsTaken(Long id, Long duration) {
     List<ParkingPlace> pp = parkingPlaceDao.findOne(id);
     if (!pp.isEmpty()) {
-      pp.get(0).setTaken(true);
       pp.get(0).setExpirationTime(pp.get(0).getExpirationTime().plusSeconds(duration));
     }
   }
@@ -29,13 +28,10 @@ public class ParkingMeterDatabaseOperationsService implements
   @Override
   public List<ParkingPlace> fetchExpiredParkingPlaces() {
     List<ParkingPlace> all = parkingPlaceDao.findAll();
-    System.out.println("all size: " + all.size());
-    all.forEach(a -> System.out.println(a));
     List<ParkingPlace> filtered = all
         .stream()
         .filter(pp -> pp.getExpirationTime().isBefore(LocalDateTime.now()))
         .collect(Collectors.toList());
-    System.out.println("fsize: " + filtered.size());
     return filtered;
   }
 }

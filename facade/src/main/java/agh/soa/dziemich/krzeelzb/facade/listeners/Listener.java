@@ -11,11 +11,8 @@ public class Listener {
   @EJB
   QueueListener queueListener;
 
-  @Schedule(second = "*", minute = "*/1", hour = "*", persistent = false)
+  @Schedule(minute = "*/1", hour = "*", persistent = false)
   public void doWork() {
-    System.out.println("pppppp");
     String s = queueListener.receiveMessage();
-    System.out.println(s);
-    System.out.println("XD");
   }
 }

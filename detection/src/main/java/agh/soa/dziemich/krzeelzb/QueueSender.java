@@ -19,7 +19,7 @@ public class QueueSender {
   public void sendMessage(String message){
     System.out.println("sending id: " + message);
     TextMessage queueTextMessage = context.createTextMessage(message);
-    context.createProducer().send(queue, "trututu");
+    context.createProducer().send(queue, queueTextMessage);
     System.out.println("sent id: " + message);
   }
 

@@ -17,14 +17,12 @@ public class Detector {
   @EJB
   QueueSender queueSender;
 
-//  @Schedule(second = "*", minute = "*/1", hour = "*", persistent = false)
+  @Schedule(second = "*/20", minute = "*/1", hour = "*", persistent = false)
   public void doWork() {
     System.out.println("lala");
     List<ParkingPlace> parkingPlaces = parkingMeterDbOp.fetchExpiredParkingPlaces();
-    parkingPlaces.forEach(abstractParkingPlace -> {
-          System.out.println("kupakupa");
-//          ParkingPlace parkingPlace = (ParkingPlace) abstractParkingPlace;
-//          queueSender.sendMessage(parkingPlace.getId().toString());
+    parkingPlaces.forEach(pp -> {
+          queueSender.sendMessage(pp.getId().toString());
         }
     );
 

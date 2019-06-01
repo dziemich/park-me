@@ -3,7 +3,11 @@ package agh.soa.dziemich.krzeelzb.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -22,15 +26,31 @@ import javax.persistence.Table;
 
 })
 
-public class ParkingPlace extends Model implements Serializable {
+public class ParkingPlace implements Serializable {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "id", nullable = false, unique = true)
+  private Long id;
   private String street;
   private Boolean taken;
   private Boolean expired;
   private LocalDateTime expirationTime;
 
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
   public String getStreet() {
     return street;
+  }
+
+  public void setStreet(String street) {
+    this.street = street;
   }
 
   public Boolean getTaken() {
