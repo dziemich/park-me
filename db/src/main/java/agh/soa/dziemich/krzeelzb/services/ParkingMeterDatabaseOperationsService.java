@@ -27,11 +27,9 @@ public class ParkingMeterDatabaseOperationsService implements
 
   @Override
   public List<ParkingPlace> fetchExpiredParkingPlaces() {
-    List<ParkingPlace> all = parkingPlaceDao.findAll();
-    List<ParkingPlace> filtered = all
+    return parkingPlaceDao.findAll()
         .stream()
         .filter(pp -> pp.getExpirationTime().isBefore(LocalDateTime.now()))
         .collect(Collectors.toList());
-    return filtered;
   }
 }

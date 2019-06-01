@@ -5,6 +5,7 @@ import agh.soa.dziemich.krzeelzb.services.IParkingMeterDatabaseOperationsService
 import javax.ejb.EJB;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
 @Path("places")
@@ -14,10 +15,9 @@ public class ParkingPlaceController {
   IParkingMeterDatabaseOperationsService parkingMeterDbOp;
 
   @POST
-  @Path("/update")
-  public Response addOne(ParkingPlaceModel ppm){
-    parkingMeterDbOp.markPlaceAsTaken(ppm.getId(), ppm.getDuration());
-    System.out.println("sratatata");
+  @Path("/{id}")
+  public Response addOne(@PathParam("id") Long id, ParkingPlaceModel ppm){
+    parkingMeterDbOp.markPlaceAsTaken(id, ppm.getDuration());
     return Response.ok().build();
   }
 
