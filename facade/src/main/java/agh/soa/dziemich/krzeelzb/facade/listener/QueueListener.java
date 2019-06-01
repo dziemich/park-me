@@ -1,12 +1,10 @@
-package agh.soa.dziemich.krzeelzb.facade.listeners;
+package agh.soa.dziemich.krzeelzb.facade.listener;
 
 import javax.annotation.Resource;
-import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.jms.JMSContext;
 import javax.jms.Queue;
-import javax.jms.TextMessage;
 
 @Stateless
 public class QueueListener {

@@ -1,9 +1,8 @@
-package agh.soa.dziemich.krzeelzb.facade.listeners;
+package agh.soa.dziemich.krzeelzb.facade.listener;
 
 import javax.ejb.EJB;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
-import javax.ejb.Stateless;
 
 @Singleton
 public class Listener {

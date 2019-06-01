@@ -30,6 +30,12 @@
       <artifactId>java.jdbc</artifactId>
       <version>0.7.9</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.12</version>
+    </dependency>
 
     <dependency>
       <groupId>org.hibernate</groupId>
