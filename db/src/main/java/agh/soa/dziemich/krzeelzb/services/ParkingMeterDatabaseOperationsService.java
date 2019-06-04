@@ -30,6 +30,7 @@ public class ParkingMeterDatabaseOperationsService implements
     return parkingPlaceDao.findAll()
         .stream()
         .filter(pp -> pp.getExpirationTime().isBefore(LocalDateTime.now()))
+        .filter(ParkingPlace::getTaken)
         .collect(Collectors.toList());
   }
 
