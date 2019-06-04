@@ -1,24 +1,30 @@
 package agh.soa.dziemich.krzeelzb.facade.listener;
 
-import javax.annotation.Resource;
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.jms.JMSContext;
-import javax.jms.Queue;
+import javax.ejb.ActivationConfigProperty;
+import javax.ejb.EJB;
+import javax.ejb.MessageDriven;
+import javax.ejb.Schedule;
+import javax.ejb.Singleton;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.MessageListener;
+import javax.jms.TextMessage;
 
-@Stateless
-public class QueueListener {
+@MessageDriven(activationConfig = {
+    @ActivationConfigProperty(
+        propertyName = "destination",
+        propertyValue = "java:/jboss/exported/jms/queue/soa-queue"
+    )
+})
+public class QueueListener implements MessageListener {
 
-  @Inject
-  private JMSContext context;
-
-  @Resource(mappedName = "java:/jboss/exported/jms/queue/soa-queue")
-  private Queue queue;
-
-  public String receiveMessage(){
-    System.out.println("receiving id:");
-    String body = context.createConsumer(queue).receiveBody(String.class);
-    System.out.println("received id: " + body);
-    return body;
+  @Override
+  public void onMessage(Message message) {
+    TextMessage txt = (TextMessage) message;
+    try {
+      System.out.println("received message: " + txt.getText());
+    } catch (JMSException e) {
+      e.printStackTrace();
+    }
   }
 }
