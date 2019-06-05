@@ -1,6 +1,5 @@
 package agh.soa.dziemich.krzeelzb.facade.controller;
 
-import agh.soa.dziemich.krzeelzb.facade.model.PasswordBody;
 import agh.soa.dziemich.krzeelzb.services.IUserManagementDatabaseOperationsService;
 import javax.ejb.EJB;
 import javax.ws.rs.PUT;
@@ -24,3 +23,4 @@ public class UserManagementController {
   }
 
 }
+

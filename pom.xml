@@ -49,6 +49,7 @@
         <module>parking-meter-service</module>
       <module>detection</module>
       <module>parking-places</module>
+        <module>hr-management-service</module>
     </modules>
 
     <dependencies>

@@ -20,7 +20,15 @@ import javax.persistence.Table;
     @NamedQuery(
         name = "Employee.findOne",
         query = "SELECT emp FROM Employee emp WHERE id = :id"
-    )
+    ),
+        @NamedQuery(
+                name = "Employee.deleteOne",
+                query = "DELETE Employee emp WHERE id = :id"
+        ),
+        @NamedQuery(
+                name = "Employee.findAll",
+                query = "SELECT emp FROM Employee emp"
+        ),
 })
 public class Employee implements Serializable {
   @Id
@@ -74,5 +82,12 @@ public class Employee implements Serializable {
 
   public void setAdmin(Boolean admin) {
     isAdmin = admin;
+  }
+
+  public Employee(String name, String login, String password, Boolean isAdmin) {
+    this.name = name;
+    this.login = login;
+    this.password = password;
+    this.isAdmin = isAdmin;
   }
 }

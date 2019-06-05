@@ -10,6 +10,7 @@ public class EmployeeDao extends AbstractDao {
   }
 
   public void addEmployee(Employee emp) {
+    System.out.println(emp.getAdmin());
     entityManager.getTransaction().begin();
     entityManager.persist(emp);
     entityManager.getTransaction().commit();
@@ -22,6 +23,12 @@ public class EmployeeDao extends AbstractDao {
         .getResultList();
   }
 
+  public List<Employee> findAll() {
+    return entityManager
+            .createNamedQuery("Employee.findAll", Employee.class)
+            .getResultList();
+  }
+
   public void updateEmployeesPassword(Long id, String value) {
     List<Employee> emps = findOne(id);
     if (!emps.isEmpty()) {
@@ -31,6 +38,13 @@ public class EmployeeDao extends AbstractDao {
       entityManager.merge(emp);
       entityManager.getTransaction().commit();
     }
-
   }
+
+  public void deleteEmployee(Long empId){
+    entityManager.getTransaction().begin();
+    entityManager.createNamedQuery("Employee.deleteOne").setParameter("id", empId).executeUpdate();
+    entityManager.getTransaction().commit();
+  }
+
+
 }

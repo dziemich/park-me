@@ -9,4 +9,11 @@ public interface IParkingMeterDatabaseOperationsService {
 
   void markPlaceAsTaken(Long id);
   void markPlaceAsFree(Long id);
+
+  List<ParkingPlace> findOne(Long id);
+  List<ParkingPlace> findAll();
+  void addParkingPlace(ParkingPlace pp);
+  void deleteParkingPlace(Long id);
+
+
 }
