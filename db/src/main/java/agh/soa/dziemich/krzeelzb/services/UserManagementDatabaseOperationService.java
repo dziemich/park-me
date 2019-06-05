@@ -49,20 +49,28 @@ public class UserManagementDatabaseOperationService implements
     }
 
     @Override
-    public List<Long> getEmployeeSubZone(Long id) {
-        List<Long> zonesEmployee = new LinkedList<>();
+    public List<SubZone> getEmployeeSubZone(Long id) {
+        List<SubZone> zonesEmployee = new LinkedList<>();
         List<SubZone> zones = subZoneDao.findAll();
-        for (int i = 0; i < zones.size(); i++) {
-            System.out.println(zones.get(i));
-
-            List<Employee> emps = zones.get(i).getEmployees();
-            System.out.println(zones.get(i).getEmployees());
+        for(SubZone z : zones){
+            List<Employee> emps = z.getEmployees();
             for (Employee e : emps) {
                 if (e.getId().equals(id)) {
-                    zonesEmployee.add(zones.get(i).getId());
+                    zonesEmployee.add(z);
                 }
             }
         }
+//        for (int i = 0; i < zones.size(); i++) {
+//            System.out.println(zones.get(i));
+//
+//            List<Employee> emps = zones.get(i).getEmployees();
+//            System.out.println(zones.get(i).getEmployees());
+//            for (Employee e : emps) {
+//                if (e.getId().equals(id)) {
+//                    zonesEmployee.add(zones.get(i).getId());
+//                }
+//            }
+//        }
         return zonesEmployee;
     }
 }

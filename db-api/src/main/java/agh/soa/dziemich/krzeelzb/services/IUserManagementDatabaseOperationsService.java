@@ -1,6 +1,7 @@
 package agh.soa.dziemich.krzeelzb.services;
 
 import agh.soa.dziemich.krzeelzb.entities.Employee;
+import agh.soa.dziemich.krzeelzb.entities.SubZone;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface IUserManagementDatabaseOperationsService {
 
   void deleteEmployee(Long id);
 
-  List<Long> getEmployeeSubZone(Long id);
+  List<SubZone> getEmployeeSubZone(Long id);
 
 
 }

@@ -1,6 +1,7 @@
 package agh.soa.dziemich.krzeelzb.controllers;
 
 import agh.soa.dziemich.krzeelzb.entities.Employee;
+import agh.soa.dziemich.krzeelzb.entities.SubZone;
 import agh.soa.dziemich.krzeelzb.services.IUserManagementDatabaseOperationsService;
 
 import javax.ejb.EJB;
@@ -28,7 +29,7 @@ public class EmployeeController {
     @GET
     @Path("/{id}/zones")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Long> getEmployeeZone(@PathParam("id") Long id){
+    public List<SubZone> getEmployeeZone(@PathParam("id") Long id){
         return employeesDbOp.getEmployeeSubZone(id);}
 
     @POST
