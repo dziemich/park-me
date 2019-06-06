@@ -53,5 +53,16 @@
       <version>3.0.19.Final</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>net.bootsfaces</groupId>
+      <artifactId>bootsfaces</artifactId>
+      <version>1.4.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.primefaces</groupId>
+      <artifactId>primefaces</artifactId>
+      <version>7.0</version>
+    </dependency>
   </dependencies>
 </project>

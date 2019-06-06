@@ -22,7 +22,11 @@ import javax.persistence.Table;
     @NamedQuery(
         name = "ParkingPlace.findAll",
         query = "SELECT pp FROM ParkingPlace pp"
-    )
+    ),
+        @NamedQuery(
+                name = "ParkingPlace.deleteOne",
+                query = "DELETE ParkingPlace pp WHERE id = :id"
+        ),
 
 })
 
@@ -36,6 +40,9 @@ public class ParkingPlace implements Serializable {
   private Boolean taken;
   private Boolean expired;
   private LocalDateTime expirationTime;
+
+  public ParkingPlace() {
+  }
 
   public Long getId() {
     return id;
@@ -74,6 +81,13 @@ public class ParkingPlace implements Serializable {
   }
 
   public void setExpirationTime(LocalDateTime expirationTime) {
+    this.expirationTime = expirationTime;
+  }
+
+  public ParkingPlace(String street, Boolean taken, Boolean expired, LocalDateTime expirationTime) {
+    this.street = street;
+    this.taken = taken;
+    this.expired = expired;
     this.expirationTime = expirationTime;
   }
 }

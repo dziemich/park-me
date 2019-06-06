@@ -22,10 +22,23 @@ public class ParkingPlaceDao extends AbstractDao{
         .getResultList();
   }
 
-  public void update(ParkingPlace parkingPlace) {
+  public void updateParkingPlace(ParkingPlace parkingPlace) {
+    entityManager.getTransaction().begin();
+    entityManager.merge(parkingPlace);
+    entityManager.getTransaction().commit();
+    entityManager.clear();
+  }
+
+  public void addParkingPlace(ParkingPlace parkingPlace){
     entityManager.getTransaction().begin();
     entityManager.persist(parkingPlace);
     entityManager.getTransaction().commit();
     entityManager.clear();
+  }
+
+  public void deleteParkingPlace(Long id){
+    entityManager.getTransaction().begin();
+    entityManager.createNamedQuery("ParkingPlace.deleteOne").setParameter("id", id).executeUpdate();
+    entityManager.getTransaction().commit();
   }
 }
