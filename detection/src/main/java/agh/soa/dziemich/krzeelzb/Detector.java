@@ -1,6 +1,5 @@
 package agh.soa.dziemich.krzeelzb;
 
-//import ParkingPlace;
 import agh.soa.dziemich.krzeelzb.entities.ParkingPlace;
 import agh.soa.dziemich.krzeelzb.services.IParkingMeterDatabaseOperationsService;
 import java.util.List;
