@@ -3,7 +3,6 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:adm="http://github.com/adminfaces"
                 template="#{layoutMB.template}">
 
     <ui:define name="metadata">
@@ -41,21 +40,27 @@
             <p:spacer height="15px"/>
             <div class="ui-fluid">
                 <p:panel id="basic" header="Employee Form">
-                        <p:outputLabel for="input-name" value="#{employeeFormBean.name}"/>
-                        <p:inputText id="input-name"/>
+                    <p:outputLabel for="input-name" value="name"/>
+                    <p:inputText id="input-name" value="#{employeeFormBean.name}"/>
 
-                        <p:outputLabel for="input-name" value="#{employeeFormBean.login}"/>
-                        <p:inputText id="input-login"/>
+                    <p:outputLabel for="input-name" value="login"/>
+                    <p:inputText id="input-login" value="#{employeeFormBean.login}"/>
 
-                        <p:outputLabel for="input-pwd" value="#{employeeFormBean.password}"/>
-                        <p:password id="input-pwd"/>
+                    <p:outputLabel for="input-pwd" value="password"/>
+                    <p:password id="input-pwd" value="#{employeeFormBean.password}"/>
 
-                        <p:outputLabel for="onemenu" value="OneMenu"/>
-                        <p:selectOneMenu id="onemenu">
-                            <f:selectItems value="#{employeeFormBean.getIds()}" />
-                        </p:selectOneMenu>
+
+                    <p:outputLabel for="zone-select" value="Zone"/>
+                    <p:selectOneMenu id="zone-select">
+                        <f:selectItems value="#{employeeFormBean.getIds()}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel for="admin-checkbox" value="admin"/>
                     <br/>
-                    <p:commandButton value="Non-Ajax Submit" id="nonAjax" action="#{employeeFormBean.addEmployee()}" style="margin-right:20px;" ajax="false" />
+                    <p:selectBooleanCheckbox id="admin-checkbox" value="#{employeeFormBean.admin}"/>
+                    <br/>
+                    <p:commandButton value="Non-Ajax Submit" id="nonAjax"
+                                     action="#{employeeFormBean.addEmployee()}"
+                                     style="margin-right:20px;" ajax="false"/>
                     <p:commandButton value="Action"
                                      id="cmdBtn"
                                      type="submit"
