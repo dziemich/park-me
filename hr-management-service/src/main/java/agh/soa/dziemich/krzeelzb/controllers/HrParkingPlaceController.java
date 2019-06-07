@@ -22,19 +22,19 @@ public class HrParkingPlaceController {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<ParkingPlace> getOne(@PathParam("id") Long id){
+    public List<ParkingPlace> getOneParkingPlace(@PathParam("id") Long id){
         return parkingMeterDbOp.findOne(id);}
 
     @POST
     @Path("/post")
-    public Response addOne(ParkingPlace ppm){
+    public Response addOneParkingPlace(ParkingPlace ppm){
         parkingMeterDbOp.addParkingPlace(ppm);
         return Response.ok().build();
     }
 
     @DELETE
     @Path("/{id}")
-    public Response deleteUser(@PathParam("id") Long id){
+    public Response deleteParkingPlace(@PathParam("id") Long id){
         parkingMeterDbOp.deleteParkingPlace(id);
         return Response.ok().build();
     }

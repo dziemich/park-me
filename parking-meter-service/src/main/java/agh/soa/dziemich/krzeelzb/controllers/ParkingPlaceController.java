@@ -1,6 +1,6 @@
-package agh.soa.dziemich.krzeelzb.parkingmeter.controllers;
+package agh.soa.dziemich.krzeelzb.controllers;
 
-import agh.soa.dziemich.krzeelzb.parkingmeter.models.ParkingPlaceModel;
+import agh.soa.dziemich.krzeelzb.models.ParkingPlaceModel;
 import agh.soa.dziemich.krzeelzb.services.IParkingPlaceDatabaseOperationsService;
 import javax.ejb.EJB;
 import javax.ws.rs.POST;

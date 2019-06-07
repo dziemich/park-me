@@ -1,4 +1,4 @@
-package agh.soa.dziemich.krzeelzb.parkingmeter.models;
+package agh.soa.dziemich.krzeelzb.models;
 
 
 public class ParkingPlaceModel {

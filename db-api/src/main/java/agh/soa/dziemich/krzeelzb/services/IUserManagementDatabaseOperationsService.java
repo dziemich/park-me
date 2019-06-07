@@ -14,6 +14,4 @@ public interface IUserManagementDatabaseOperationsService {
   void deleteEmployee(Long id);
   List<SubZone> getEmployeeSubZone(Long id);
   void addEmployeesZone(Long idEmp, Long subzoneId);
-
-
 }

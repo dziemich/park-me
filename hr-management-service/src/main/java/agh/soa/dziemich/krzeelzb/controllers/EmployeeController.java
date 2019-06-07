@@ -15,6 +15,7 @@ public class EmployeeController {
 
     @EJB(lookup = "java:global/db/UserManagementDatabaseOperationService")
     IUserManagementDatabaseOperationsService employeesDbOp;
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Employee> getAll(){ return employeesDbOp.findAll();}
@@ -44,8 +45,6 @@ public class EmployeeController {
     @Path("/{id}/zone")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addEmployeesZone(@PathParam("id") Long idEmp,SubZone zone){
-        System.out.println("00000000000000000000000000000000000"+zone);
-//        Long zoneIdLong=Long.valueOfsubzone_employee(zoneId);
         employeesDbOp.addEmployeesZone(idEmp,zone.getId());
         return Response.ok().build();
     }
@@ -62,6 +61,4 @@ public class EmployeeController {
         employeesDbOp.deleteEmployee(id);
         return Response.ok().build();
     }
-
-
 }

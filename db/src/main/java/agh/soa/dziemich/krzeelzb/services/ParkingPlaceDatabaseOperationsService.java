@@ -35,6 +35,30 @@ public class ParkingPlaceDatabaseOperationsService implements
     }
 
     @Override
+    public List<ParkingPlace> fechFreeParkingPlaces(){
+        return parkingPlaceDao.findAll()
+                .stream()
+                .filter(pp -> !pp.getTaken())
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ParkingPlace> fetchFreeParkingPlacesFromStreet(String street) {
+        return fechFreeParkingPlaces().
+                stream()
+                .filter(pp->pp.getStreet().equals(street))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ParkingPlace> fetchExpiredParkingPlacesFromStreet(String street) {
+        return  fechFreeParkingPlaces()
+                .stream()
+                .filter(pp->pp.getStreet().equals(street))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void markPlaceAsTaken(Long id) {
         List<ParkingPlace> pp = parkingPlaceDao.findOne(id);
         if (!pp.isEmpty()) {
