@@ -17,18 +17,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
         <meta name="mobile-web-app-capable" content="yes"/>
         <h:outputStylesheet library="css" name="prism.css"/>
-        
+
         <meta name="theme-color" content="#444"/>
 
         <style type="text/css">
 
             /* below css hides growls in small screens and makes messages visible */
             @media (max-width: 768px) {
-                
+
                 body div.ui-growl {
                     display: none;
                 }
-                
+
                body div.ui-messages {
                     display: block;
                 }
@@ -57,7 +57,7 @@
                 -o-background-size: cover;
                 background-size: cover;
             }
-            
+
             @media (max-width: 768px) {
                 html {
                     background-image: url(#{resource[ 'images:login-bg-mobile.jpeg' ]});
@@ -74,7 +74,7 @@
             <div class="bar"></div>
             <div class="bar"></div>
         </div>
-        
+
         <p:dialog id="adminStatusDialog" modal="true" widgetVar="statusDialog" draggable="false" closable="false"
                   resizable="false" responsive="true" showHeader="false" appendTo="@(body)">
             <p:graphicImage library="images" name="#{adminConfig.loadingImage}"/>
@@ -86,6 +86,17 @@
             </div>
             <!-- /.login-logo -->
             <div class="box login-box-body">
+
+                <h:form id="login" onsubmit="document.getElementById('login').action='j_security_check';" prependId="false">
+                    <h:panelGrid columns="2">
+                        <p:outputLabel for="j_username" value="Username" />
+                        <p:inputText id="j_username" name="j_username" />
+                        <p:outputLabel for="j_password" value="Password" />
+                        <p:password id="j_password" name="j_password"/>
+                        <p:commandButton id="submit" value="Login" ajax="false"/>
+                    </h:panelGrid>
+                </h:form>
+
                 <h:form>
                     <p class="login-box-msg">Sign in to start your session</p>
                     <p:messages closable="true" />
