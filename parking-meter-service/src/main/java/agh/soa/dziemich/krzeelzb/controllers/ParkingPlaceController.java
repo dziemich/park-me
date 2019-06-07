@@ -11,7 +11,7 @@ import javax.ws.rs.core.Response;
 @Path("places")
 public class ParkingPlaceController {
 
-  @EJB(lookup = "java:global/db/ParkingMeterDatabaseOperationsService")
+  @EJB(lookup = "java:global/db/ParkingPlaceDatabaseOperationsService")
   IParkingPlaceDatabaseOperationsService parkingMeterDbOp;
 
   @POST

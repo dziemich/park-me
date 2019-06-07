@@ -41,6 +41,9 @@ public class ParkingPlace implements Serializable {
   private Boolean expired;
   private LocalDateTime expirationTime;
 
+  public ParkingPlace(long l, String nullo, boolean b, boolean b1, LocalDateTime of) {
+  }
+
   public ParkingPlace() {
   }
 

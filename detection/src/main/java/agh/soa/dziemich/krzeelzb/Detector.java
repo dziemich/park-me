@@ -10,7 +10,7 @@ import javax.ejb.Singleton;
 @Singleton
 public class Detector {
 
-  @EJB(lookup = "java:global/db/ParkingMeterDatabaseOperationsService")
+  @EJB(lookup = "java:global/db/ParkingPlaceDatabaseOperationsService")
   IParkingPlaceDatabaseOperationsService parkingMeterDbOp;
 
   @EJB
