@@ -60,17 +60,16 @@ public class UserManagementDatabaseOperationService implements
                 }
             }
         }
-//        for (int i = 0; i < zones.size(); i++) {
-//            System.out.println(zones.get(i));
-//
-//            List<Employee> emps = zones.get(i).getEmployees();
-//            System.out.println(zones.get(i).getEmployees());
-//            for (Employee e : emps) {
-//                if (e.getId().equals(id)) {
-//                    zonesEmployee.add(zones.get(i).getId());
-//                }
-//            }
-//        }
         return zonesEmployee;
+    }
+
+    @Override
+    public void addEmployeesZone(Long idEmp, Long subzoneId) {
+        List<Employee> employee=employeeDao.findOne(idEmp);
+        List<SubZone> subZone=subZoneDao.findOne(subzoneId);
+        if(!subZone.isEmpty()){
+            subZone.get(0).addEmployeeToSubZone(employee.get(0));
+        }
+
     }
 }

@@ -5,9 +5,6 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.persistence.AttributeConverter;
 
-/**
- * Created by Mario on 13.04.2016.
- */
 public class PasswordConverter implements AttributeConverter<String, String> {
 
   @Override

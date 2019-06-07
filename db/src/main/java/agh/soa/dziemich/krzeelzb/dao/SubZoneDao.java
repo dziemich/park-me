@@ -12,5 +12,10 @@ public class SubZoneDao extends AbstractDao {
                 .getResultList();
     }
 
-
+    public List<SubZone> findOne(Long id) {
+        return entityManager
+                .createNamedQuery("SubZone.findOne", SubZone.class)
+                .setParameter("id", id)
+                .getResultList();
+    }
 }

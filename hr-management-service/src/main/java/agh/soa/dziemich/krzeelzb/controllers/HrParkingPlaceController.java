@@ -1,7 +1,7 @@
 package agh.soa.dziemich.krzeelzb.controllers;
 
 import agh.soa.dziemich.krzeelzb.entities.ParkingPlace;
-import agh.soa.dziemich.krzeelzb.services.IParkingMeterDatabaseOperationsService;
+import agh.soa.dziemich.krzeelzb.services.IParkingPlaceDatabaseOperationsService;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -11,8 +11,8 @@ import java.util.List;
 
 @Path("/parkingplaces")
 public class HrParkingPlaceController {
-    @EJB(lookup = "java:global/db/ParkingMeterDatabaseOperationsService")
-    IParkingMeterDatabaseOperationsService parkingMeterDbOp;
+    @EJB(lookup = "java:global/db/ParkingPlaceDatabaseOperationsService")
+    IParkingPlaceDatabaseOperationsService parkingMeterDbOp;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

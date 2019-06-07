@@ -1,6 +1,8 @@
 package agh.soa.dziemich.krzeelzb.dao;
 
 import agh.soa.dziemich.krzeelzb.entities.Employee;
+import agh.soa.dziemich.krzeelzb.entities.SubZone;
+
 import java.util.List;
 
 public class EmployeeDao extends AbstractDao {
@@ -15,6 +17,8 @@ public class EmployeeDao extends AbstractDao {
     entityManager.persist(emp);
     entityManager.getTransaction().commit();
   }
+
+
 
   public List<Employee> findOne(Long id) {
     return entityManager

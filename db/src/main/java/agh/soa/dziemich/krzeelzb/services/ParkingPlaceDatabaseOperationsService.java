@@ -11,9 +11,9 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 @Stateless
-@Remote(IParkingMeterDatabaseOperationsService.class)
-public class ParkingMeterDatabaseOperationsService implements
-        IParkingMeterDatabaseOperationsService {
+@Remote(IParkingPlaceDatabaseOperationsService.class)
+public class ParkingPlaceDatabaseOperationsService implements
+        IParkingPlaceDatabaseOperationsService {
 
     @Inject
     ParkingPlaceDao parkingPlaceDao;

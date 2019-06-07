@@ -34,11 +34,28 @@ public class EmployeeController {
 
     @POST
     @Path("/post")
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response addOne(Employee emp){
         employeesDbOp.addEmployee(emp);
         return Response.ok().build();
     }
 
+    @PUT
+    @Path("/{id}/zone")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addEmployeesZone(@PathParam("id") Long idEmp,SubZone zone){
+        System.out.println("00000000000000000000000000000000000"+zone);
+//        Long zoneIdLong=Long.valueOfsubzone_employee(zoneId);
+        employeesDbOp.addEmployeesZone(idEmp,zone.getId());
+        return Response.ok().build();
+    }
+
+    @POST
+    @Path("/post")
+    public Response addEmployee(Employee emp){
+        employeesDbOp.addEmployee(emp);
+        return Response.ok().build();
+    }
     @DELETE
     @Path("/{id}")
     public Response deleteUser(@PathParam("id") Long id){

@@ -1,7 +1,7 @@
 package agh.soa.dziemich.krzeelzb;
 
 import agh.soa.dziemich.krzeelzb.entities.ParkingPlace;
-import agh.soa.dziemich.krzeelzb.services.IParkingMeterDatabaseOperationsService;
+import agh.soa.dziemich.krzeelzb.services.IParkingPlaceDatabaseOperationsService;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Schedule;
@@ -11,7 +11,7 @@ import javax.ejb.Singleton;
 public class Detector {
 
   @EJB(lookup = "java:global/db/ParkingMeterDatabaseOperationsService")
-  IParkingMeterDatabaseOperationsService parkingMeterDbOp;
+  IParkingPlaceDatabaseOperationsService parkingMeterDbOp;
 
   @EJB
   QueueSender queueSender;

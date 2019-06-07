@@ -14,7 +14,11 @@ import javax.persistence.*;
 
         @NamedQuery(
                 name = "SubZone.selectEmployees",
-                query = "SELECT employees  FROM SubZone")
+                query = "SELECT employees  FROM SubZone"),
+        @NamedQuery(
+                name = "SubZone.findOne",
+                query = "SELECT sz FROM SubZone sz WHERE id = :id"
+        ),
 })
 public class SubZone implements Serializable {
   @Id
@@ -29,6 +33,12 @@ public class SubZone implements Serializable {
   List<Employee> employees;
 
   public SubZone() {
+  }
+
+  public void addEmployeeToSubZone(Employee emp){
+    if (!employees.contains(emp)){
+    employees.add(emp);
+    }
   }
 
   public List<Employee> getEmployees() {
