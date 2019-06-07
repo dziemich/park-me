@@ -52,10 +52,16 @@
 
                         <p:outputLabel for="onemenu" value="OneMenu"/>
                         <p:selectOneMenu id="onemenu">
-                            <f:selectItems value="#{employeeFormBean.getIds}" />
+                            <f:selectItems value="#{employeeFormBean.getIds()}" />
                         </p:selectOneMenu>
                     <br/>
-                    <p:commandButton value="Action" id="cmdBtn" styleClass="btn-primary" action="#{employeeFormBean.addEmployee()aa}"/>
+                    <p:commandButton value="Non-Ajax Submit" id="nonAjax" action="#{employeeFormBean.addEmployee()}" style="margin-right:20px;" ajax="false" />
+                    <p:commandButton value="Action"
+                                     id="cmdBtn"
+                                     type="submit"
+                                     styleClass="btn-primary"
+                                     actionListener="#{employeeFormBean.addEmployee()}"
+                    />
                 </p:panel>
             </div>
         </h:form>

@@ -10,6 +10,9 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import org.jboss.resteasy.client.jaxrs.ResteasyClient;
+import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 import org.omnifaces.cdi.ViewScoped;
 
 
@@ -60,13 +63,33 @@ public class EmployeeFormBean implements Serializable {
 
   public void addEmployee() {
     Employee emp = new Employee(login, name, password, isAdmin);
-    Client client = ClientBuilder.newClient();
-    WebTarget target = client.target("http://127.0.0.1:8080/hr-management-service/hr/employees/post");
+//    Client client = ClientBuilder.newClient();
+//    WebTarget target = client.target("http://127.0.0.1:8080/hr-management-service/hr/employees/post");
+//    Response response = target.request()
+//        .post(Entity.entity("\"{\"name\":\"admin\",\"login\":\"admin\",\"password\":\"admin\",\"isAdmin\":true}\"",
+//            MediaType.APPLICATION_JSON));
+//    int status = response.getStatus();
+//    ResteasyClient client = new ResteasyClientBuilder().build();
+//    Response response = client.target("http://localhost:8080/rest/users")
+//        .request("application/json").get();
+//    int status = response.getStatus();
+//    System.out.println("Status code: " + status);
+    System.out.println("jestem useless buttonem");
+    ResteasyClient client = new ResteasyClientBuilder().build();
+    ResteasyWebTarget target = client.target("http://127.0.0.1:8080/hr-management-service/hr/employees/post");
     Response response = target.request()
-        .post(Entity.entity("\"{\"name\":\"admin\",\"login\":\"admin\",\"password\":\"admin\",\"isAdmin\":true}\"",
+        .post(Entity.entity(""
+                + "{\n"
+                + "\t\"name\": \"admin\",\n"
+                + "\t\"login\": \"admin\",\n"
+                + "\t\"password\": \"admin\",\n"
+                + "\t\"isAdmin\": true\n"
+                + "}",
             MediaType.APPLICATION_JSON));
-    int status = response.getStatus();
 
-    System.out.println("Status code: " + status);
+
+    int status = response.getStatus();
+    System.out.println(status);
+
   }
 }

@@ -10,7 +10,7 @@ import org.omnifaces.cdi.ViewScoped;
 @ViewScoped
 public class UserBean implements Serializable {
 
-  public String show(){
+  public String show() {
     Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
     return principal.getName();
   }
