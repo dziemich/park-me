@@ -15,6 +15,7 @@ public class EmployeeController {
 
     @EJB(lookup = "java:global/db/UserManagementDatabaseOperationService")
     IUserManagementDatabaseOperationsService employeesDbOp;
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Employee> getAll(){ return employeesDbOp.findAll();}
@@ -34,17 +35,30 @@ public class EmployeeController {
 
     @POST
     @Path("/post")
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response addOne(Employee emp){
         employeesDbOp.addEmployee(emp);
         return Response.ok().build();
     }
 
+    @PUT
+    @Path("/{id}/zone")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addEmployeesZone(@PathParam("id") Long idEmp,SubZone zone){
+        employeesDbOp.addEmployeesZone(idEmp,zone.getId());
+        return Response.ok().build();
+    }
+
+    @POST
+    @Path("/post")
+    public Response addEmployee(Employee emp){
+        employeesDbOp.addEmployee(emp);
+        return Response.ok().build();
+    }
     @DELETE
     @Path("/{id}")
     public Response deleteUser(@PathParam("id") Long id){
         employeesDbOp.deleteEmployee(id);
         return Response.ok().build();
     }
-
-
 }

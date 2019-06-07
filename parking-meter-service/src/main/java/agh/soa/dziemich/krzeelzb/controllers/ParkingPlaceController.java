@@ -1,7 +1,7 @@
-package agh.soa.dziemich.krzeelzb.parkingmeter.controllers;
+package agh.soa.dziemich.krzeelzb.controllers;
 
-import agh.soa.dziemich.krzeelzb.parkingmeter.models.ParkingPlaceModel;
-import agh.soa.dziemich.krzeelzb.services.IParkingMeterDatabaseOperationsService;
+import agh.soa.dziemich.krzeelzb.models.ParkingPlaceModel;
+import agh.soa.dziemich.krzeelzb.services.IParkingPlaceDatabaseOperationsService;
 import javax.ejb.EJB;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 public class ParkingPlaceController {
 
   @EJB(lookup = "java:global/db/ParkingMeterDatabaseOperationsService")
-  IParkingMeterDatabaseOperationsService parkingMeterDbOp;
+  IParkingPlaceDatabaseOperationsService parkingMeterDbOp;
 
   @POST
   @Path("/{id}")

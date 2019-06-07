@@ -8,16 +8,10 @@ import java.util.List;
 public interface IUserManagementDatabaseOperationsService {
 
   List<Employee> findAll();
-
   List<Employee> findOne(Long id);
-
   void addEmployee(Employee emp);
-
   void updatePassword(Long id, String value);
-
   void deleteEmployee(Long id);
-
   List<SubZone> getEmployeeSubZone(Long id);
-
-
+  void addEmployeesZone(Long idEmp, Long subzoneId);
 }

@@ -11,9 +11,9 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 @Stateless
-@Remote(IParkingMeterDatabaseOperationsService.class)
-public class ParkingMeterDatabaseOperationsService implements
-        IParkingMeterDatabaseOperationsService {
+@Remote(IParkingPlaceDatabaseOperationsService.class)
+public class ParkingPlaceDatabaseOperationsService implements
+        IParkingPlaceDatabaseOperationsService {
 
     @Inject
     ParkingPlaceDao parkingPlaceDao;
@@ -31,6 +31,30 @@ public class ParkingMeterDatabaseOperationsService implements
         return parkingPlaceDao.findAll()
                 .stream()
                 .filter(pp -> pp.getExpirationTime().isBefore(LocalDateTime.now()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ParkingPlace> fechFreeParkingPlaces(){
+        return parkingPlaceDao.findAll()
+                .stream()
+                .filter(pp -> !pp.getTaken())
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ParkingPlace> fetchFreeParkingPlacesFromStreet(String street) {
+        return fechFreeParkingPlaces().
+                stream()
+                .filter(pp->pp.getStreet().equals(street))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ParkingPlace> fetchExpiredParkingPlacesFromStreet(String street) {
+        return  fechFreeParkingPlaces()
+                .stream()
+                .filter(pp->pp.getStreet().equals(street))
                 .collect(Collectors.toList());
     }
 
