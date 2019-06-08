@@ -16,7 +16,8 @@ public interface IParkingPlaceDatabaseOperationsService {
   List<ParkingPlace> findAll();
   void addParkingPlace(ParkingPlace pp);
   void deleteParkingPlace(Long id);
-  List<ParkingPlace> fechFreeParkingPlaces();
+  List<ParkingPlace> fetchFreeParkingPlaces();
   List<ParkingPlace> fetchFreeParkingPlacesFromStreet(String street);
   List<ParkingPlace> fetchExpiredParkingPlacesFromStreet(String street);
+  List<ParkingPlace> fetchTakenParkingPlaces();
 }

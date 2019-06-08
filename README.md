@@ -13,7 +13,7 @@ TODOs:
 - [ ] Frontend
 - [x] Modularization
 - [x] Database
-- [ ] API
+- [x] API
 - [ ] HR Management (Employees)
 - [x] REST API for parking meteres
 - [ ] renaming parent module to parking system

@@ -38,5 +38,26 @@ public class HrParkingPlaceController {
         parkingMeterDbOp.deleteParkingPlace(id);
         return Response.ok().build();
     }
+    @GET
+    @Path("/expiredPlaces")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ParkingPlace> getAllExpiredParkingPlaces(){
+        return parkingMeterDbOp.fetchExpiredParkingPlaces();
+    }
+
+    @GET
+    @Path("/freePlaces")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ParkingPlace> getAllFreeTakenPlaces() {
+        return parkingMeterDbOp.fetchFreeParkingPlaces();
+    }
+
+    @GET
+    @Path("/takenPlaces")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ParkingPlace> getAllTakenParkingPlaces() {
+        return parkingMeterDbOp.fetchTakenParkingPlaces();
+    }
+
 
 }

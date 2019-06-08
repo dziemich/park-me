@@ -36,7 +36,7 @@ public class ApiParkingPlacesController {
     @Path("/freePlaces")
     @Produces(MediaType.APPLICATION_JSON)
     public List<ParkingPlace> getAllFreeParkingPlaces() {
-        return parkingMeterDbOp.fechFreeParkingPlaces();
+        return parkingMeterDbOp.fetchFreeParkingPlaces();
     }
 
     @GET

@@ -1,8 +1,13 @@
 package agh.soa.dziemich.krzeelzb.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.print.attribute.standard.MediaSize;
 
 @Entity
 @Table(name = "parking_place")
@@ -27,7 +33,6 @@ import javax.persistence.Table;
                 name = "ParkingPlace.deleteOne",
                 query = "DELETE ParkingPlace pp WHERE id = :id"
         ),
-
 })
 
 public class ParkingPlace implements Serializable {
@@ -39,6 +44,7 @@ public class ParkingPlace implements Serializable {
   private String street;
   private Boolean taken;
   private Boolean expired;
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",shape = JsonFormat.Shape.STRING)
   private LocalDateTime expirationTime;
 
   public ParkingPlace(long l, String nullo, boolean b, boolean b1, LocalDateTime of) {

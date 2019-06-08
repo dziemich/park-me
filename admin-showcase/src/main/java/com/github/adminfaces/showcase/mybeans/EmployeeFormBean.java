@@ -62,7 +62,6 @@ public class EmployeeFormBean implements Serializable {
   }
 
   public void addEmployee() {
-    Employee emp = new Employee(login, name, password, isAdmin);
 //    Client client = ClientBuilder.newClient();
 //    WebTarget target = client.target("http://127.0.0.1:8080/hr-management-service/hr/employees/post");
 //    Response response = target.request()
