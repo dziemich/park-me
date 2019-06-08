@@ -1,9 +1,13 @@
 package com.github.adminfaces.showcase.bean;
 
+import agh.soa.dziemich.krzeelzb.entities.PPTest;
+import agh.soa.dziemich.krzeelzb.entities.ParkingPlace;
 import com.github.adminfaces.showcase.model.Car;
 import com.github.adminfaces.showcase.model.Stats;
 import com.github.adminfaces.showcase.model.Team;
+import com.github.adminfaces.showcase.mybeans.TestClss;
 import com.github.adminfaces.showcase.service.CarService;
+import java.time.LocalDateTime;
 import org.omnifaces.cdi.ViewScoped;
 
 import javax.annotation.PostConstruct;
@@ -22,7 +26,7 @@ import java.util.Locale;
 public class DatatableMB implements Serializable {
 
     private List<Team> teams;
-    private List<Car> cars;
+    private List<PPTest> cars;
     private Car selectedCar;
     private List<String> selectedColors;
 
@@ -53,7 +57,16 @@ public class DatatableMB implements Serializable {
         celtics.getStats().add(new Stats("2010-2011", 35, 47));
         teams.add(celtics);
 
-        cars = carService.createCars(30);
+        cars = List.of(
+//            new ParkingPlace(1L,"nullo", true, true,
+//                LocalDateTime.of(2020, 1, 2, 8, 20)),
+//            new ParkingPlace(3L, "rodzinna", false, true,
+//                LocalDateTime.of(2019, 9, 2, 8, 30)),
+//            new ParkingPlace(7L, "rodzinna", true, false,
+//                LocalDateTime.of(2019, 1, 2, 12, 20))
+            new PPTest(1,"l"),
+            new PPTest(4,"4")
+        );
     }
 
     public boolean filterByPrice(Object value, Object filter, Locale locale) {
@@ -104,13 +117,13 @@ public class DatatableMB implements Serializable {
         return carService.getColors();
     }
 
-    public List<Car> getCars() {
+    public List<PPTest> getCars() {
         return cars;
     }
 
-    public List<Car> getCarsCarousel() {
-        return cars.subList(0,8);
-    }
+//    public List<Car> getCarsCarousel() {
+//        return cars.subList(0,8);
+//    }
 
     public List<Car> getFilteredCars() {
         return filteredCars;
