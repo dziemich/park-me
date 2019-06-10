@@ -94,8 +94,8 @@
                     <p:inputSwitch value="#{layoutMB.materialButtons}" id="material-switch" widgetVar="materialSwitch">
                         <p:ajax update="@(.card)" oncomplete="styleMaterialInputs()"/>
                     </p:inputSwitch>
-                </f:facet>    
-                
+                </f:facet>
+
                 <table class="table table-bordered text-center">
                     <tbody>
                         <tr>
@@ -285,7 +285,7 @@
             $(document).ready(function () {
                 styleMaterialInputs();
             });
-        </script>    
+        </script>
     </ui:define>
 
     <ui:define name="code">
@@ -301,7 +301,7 @@
             <p:tab title="ButtonMB.java">
                 <pre>
                <code class="language-java">
-                   <h:outputText value="#{sourceCodeMB.getJavaSource('com.github.adminfaces.showcase.bean.ButtonMB')}"
+                   <h:outputText value="#{sourceCodeMB.getJavaSource('ButtonMB')}"
                                  escape="false"/>
                </code>
                 </pre>
