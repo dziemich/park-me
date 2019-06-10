@@ -66,6 +66,32 @@
         </web-resource-collection>
         <auth-constraint>
             <role-name>t</role-name>
+            <role-name>f</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>auth-pages</web-resource-name>
+            <url-pattern>/pages/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>t</role-name>
+            <role-name>f</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>auth-form</web-resource-name>
+            <url-pattern>/pages/form/admin-only.xhtml</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>t</role-name>
         </auth-constraint>
     </security-constraint>
 
