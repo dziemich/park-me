@@ -27,17 +27,42 @@
                         <f:selectItems value="#{zoneFormBean.getParkometrsIds()}" var="id" itemLabel="#{id}" itemValue="#{id}" />
                     </p:selectManyCheckbox >
 
-                     <p:outputLabel for="parkinplace-select" value="parking places"/>
+
+                    <p:commandButton value="Add Zone" id="addParkometer"
+                                     action="#{zoneFormBean.addParkometer()}"
+                                     styleClass="btn-primary"
+                                      ajax="false"/>
+
+
+                    <p:outputLabel for="parkinplace-select" value="parking places"/>
                     <p:selectManyCheckbox  id="parkinplace-select"  value="#{zoneFormBean.parkingPlaces}" layout="grid" columns="3">
                         <f:selectItems value="#{parkingPlacesBean.getParkingPlacesId()}" var="id" itemLabel="#{id}" itemValue="#{id}" />
                     </p:selectManyCheckbox >
 
 
+                    <h:form>
+                        <p:outputLabel for="street-name" value="street"/>
+                        <p:inputText id="street-name" value="#{parkingPlacesBean.street}"/>
+                        <p:outputLabel for="taken-checkbox" value="taken"/>
+                        <br/>
+                        <p:selectBooleanCheckbox id="taken-checkbox" value="#{parkingPlacesBean.taken}"/>
+                        <br/>
+                        <p:outputLabel for="expired-checkbox" value="expired"/>
+                        <br/>
+                        <p:selectBooleanCheckbox id="expired-checkbox" value="#{parkingPlacesBean.expired}"/>
+                        <br/>
 
-                    <p:commandButton value="Add" id="addParkometer"
-                                     action="#{zoneFormBean.addParkometer()}"
-                                     styleClass="btn-primary"
-                                     style="margin-right:20px;" ajax="false"/>
+                        <p:outputLabel for="time" value="Expiration time" />
+                        <p:datePicker id="time" value="#{parkingPlacesBean.expirationTimeDate}" showTime="true"/>
+
+                        <p:commandButton value="Add Parking Place" id="addParkingPlace"
+                                         action="#{parkingPlacesBean.addParkingPlace()}"
+                                         styleClass="btn-primary"
+                                         ajax="false"/>
+
+                    </h:form>
+
+
 
 
 
