@@ -13,7 +13,7 @@ import javax.inject.Inject;
 @Stateless
 @Remote(IParkingPlaceDatabaseOperationsService.class)
 public class ParkingPlaceDatabaseOperationsService implements
-        IParkingPlaceDatabaseOperationsService {
+    IParkingPlaceDatabaseOperationsService {
 
     @Inject
     ParkingPlaceDao parkingPlaceDao;
@@ -29,33 +29,41 @@ public class ParkingPlaceDatabaseOperationsService implements
     @Override
     public List<ParkingPlace> fetchExpiredParkingPlaces() {
         return parkingPlaceDao.findAll()
-                .stream()
-                .filter(pp -> pp.getExpirationTime().isBefore(LocalDateTime.now()))
-                .collect(Collectors.toList());
+            .stream()
+            .filter(pp -> pp.getExpirationTime().isBefore(LocalDateTime.now()))
+            .collect(Collectors.toList());
     }
 
     @Override
-    public List<ParkingPlace> fechFreeParkingPlaces(){
+    public List<ParkingPlace> fetchFreeParkingPlaces(){
         return parkingPlaceDao.findAll()
-                .stream()
-                .filter(pp -> !pp.getTaken())
-                .collect(Collectors.toList());
+            .stream()
+            .filter(pp -> !pp.getTaken())
+            .collect(Collectors.toList());
     }
 
     @Override
     public List<ParkingPlace> fetchFreeParkingPlacesFromStreet(String street) {
-        return fechFreeParkingPlaces().
-                stream()
-                .filter(pp->pp.getStreet().equals(street))
-                .collect(Collectors.toList());
+        return findAll().
+            stream()
+            .filter(pp->pp.getStreet().equals(street))
+            .collect(Collectors.toList());
     }
 
     @Override
     public List<ParkingPlace> fetchExpiredParkingPlacesFromStreet(String street) {
-        return  fechFreeParkingPlaces()
-                .stream()
-                .filter(pp->pp.getStreet().equals(street))
-                .collect(Collectors.toList());
+        return  findAll()
+            .stream()
+            .filter(pp->pp.getStreet().equals(street))
+            .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ParkingPlace> fetchTakenParkingPlaces() {
+        return findAll()
+            .stream()
+            .filter(pp -> pp.getTaken())
+            .collect(Collectors.toList());
     }
 
     @Override

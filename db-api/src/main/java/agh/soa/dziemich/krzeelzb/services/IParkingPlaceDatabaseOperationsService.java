@@ -10,13 +10,14 @@ public interface IParkingPlaceDatabaseOperationsService {
 
   void markPlaceAsPaid(Long id, Long duration);
   List<ParkingPlace> fetchExpiredParkingPlaces();
+  List<ParkingPlace> fetchTakenParkingPlaces();
   void markPlaceAsTaken(Long id);
   void markPlaceAsFree(Long id);
   List<ParkingPlace> findOne(Long id);
   List<ParkingPlace> findAll();
   void addParkingPlace(ParkingPlace pp);
   void deleteParkingPlace(Long id);
-  List<ParkingPlace> fechFreeParkingPlaces();
+  List<ParkingPlace> fetchFreeParkingPlaces();
   List<ParkingPlace> fetchFreeParkingPlacesFromStreet(String street);
   List<ParkingPlace> fetchExpiredParkingPlacesFromStreet(String street);
 }
