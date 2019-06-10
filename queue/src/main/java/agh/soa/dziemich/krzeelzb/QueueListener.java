@@ -19,9 +19,7 @@ public class QueueListener implements IQueueListener {
   private Queue queue;
 
   public String receiveMessage(){
-    System.out.println("receiving id:");
     String body = context.createConsumer(queue).receiveBody(String.class);
-    System.out.println("received id: " + body);
     return body;
   }
 }

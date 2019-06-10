@@ -27,6 +27,17 @@ public class UserBean implements Serializable {
     return principal.getName();
   }
 
+  public Long getUserId(){
+    String login = findUser();
+    return userManagementDbOpService
+        .findAll()
+        .stream()
+        .filter(emp -> emp.getLogin().equals(login))
+        .map(Employee::getId)
+        .findFirst()
+        .orElseThrow(IllegalStateException::new);
+  }
+
   public String showName(){
     String login = findUser();
     return userManagementDbOpService
@@ -35,7 +46,7 @@ public class UserBean implements Serializable {
         .filter(emp -> emp.getLogin().equals(login))
         .map(Employee::getName)
         .findFirst()
-        .orElseThrow(IllegalAccessError::new);
+        .orElseThrow(IllegalStateException::new);
   }
 
   public void logout(){

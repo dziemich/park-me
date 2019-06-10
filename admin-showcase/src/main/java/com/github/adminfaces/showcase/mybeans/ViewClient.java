@@ -7,6 +7,7 @@ import java.util.function.Consumer;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.inject.Inject;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -16,22 +17,17 @@ import javax.ws.rs.sse.SseEventSource;
 @ApplicationScoped
 public class ViewClient implements Serializable {
 
-  private static final String BASE_URI = "http://localhost:9090";
-  private static final long serialVersionUID = 1974510449199395815L;
-
   @ManagedProperty(value = "#{messageHolder}")
   public MessageHolder messageHolder;
-  private ScheduledExecutorService scheduler;
 
+  @Inject
+  UserBean userBean;
 
-  public ViewClient() {
-
-  }
 
   public void checkSSE() {
-    System.out.println("Client start check");
+    Long userId = userBean.getUserId();
     Client client = ClientBuilder.newClient();
-    WebTarget target = client.target("http://localhost:8080/detection/detect/detection/events");
+    WebTarget target = client.target("http://localhost:8080/detection/detect/detection/events/" + userId);
 
     try (SseEventSource eventSource = SseEventSource.target(target).build()) {
 
