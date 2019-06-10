@@ -31,7 +31,7 @@ public class ViewClient implements Serializable {
   public void checkSSE() {
     System.out.println("Client start check");
     Client client = ClientBuilder.newClient();
-    WebTarget target = client.target("http://localhost:8080/facade/facade/detection/events");
+    WebTarget target = client.target("http://localhost:8080/detection/detect/detection/events");
 
     try (SseEventSource eventSource = SseEventSource.target(target).build()) {
 

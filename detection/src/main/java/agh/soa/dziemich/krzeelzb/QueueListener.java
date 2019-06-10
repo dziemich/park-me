@@ -1,4 +1,4 @@
-package agh.soa.dziemich.krzeelzb.facade.listener;
+package agh.soa.dziemich.krzeelzb;
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
