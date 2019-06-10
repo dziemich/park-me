@@ -1,9 +1,15 @@
 package com.github.adminfaces.showcase.mybeans;
 
+import agh.soa.dziemich.krzeelzb.entities.Employee;
 import agh.soa.dziemich.krzeelzb.entities.ParkingPlace;
+import agh.soa.dziemich.krzeelzb.entities.SubZone;
+import agh.soa.dziemich.krzeelzb.services.IParkingPlaceDatabaseOperationsService;
+import agh.soa.dziemich.krzeelzb.services.IUserManagementDatabaseOperationsService;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
+import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.core.Response;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
@@ -16,12 +22,29 @@ import org.primefaces.json.JSONArray;
 @ViewScoped
 public class ParkingPlacesBean implements Serializable {
 
+  @EJB(lookup = "java:global/db/ParkingPlaceDatabaseOperationsService")
+  IParkingPlaceDatabaseOperationsService parkingMeterDbOp;
+
+  @EJB(lookup = "java:global/db/UserManagementDatabaseOperationService")
+  IUserManagementDatabaseOperationsService userManagementDbOpService;
+
+  @Inject
+  UserBean userBean;
+
   public List<ParkingPlace> getParkingPlaces() {
-    return List.of(
-        new ParkingPlace( "nullo", true, true, LocalDateTime.of(2019, 7,1,1,1,1)),
-        new ParkingPlace( "rodzinna", false, true, LocalDateTime.of(2019, 7,1,1,1,1)),
-        new ParkingPlace( "rodzinna", true, false, LocalDateTime.of(2019, 7,1,1,1,1) )
-    );
+    String userName = userBean.findUser();
+    Employee employee = userManagementDbOpService.findAll().stream()
+        .filter(emp -> emp.getName().equals(userName))
+        .findFirst()
+        .orElseThrow(IllegalStateException::new);
+    if(!employee.getAdmin()) {
+      SubZone employeeSubZone = userManagementDbOpService.getEmployeeSubZone(employee.getId())
+          .get(0);
+      List<ParkingPlace> parkingPlaces = employeeSubZone.getParkingPlaces();
+      return parkingPlaces;
+    } else {
+      return parkingMeterDbOp.findAll();
+    }
   }
 
   public int numberOfFreePlaces() {
