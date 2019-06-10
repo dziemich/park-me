@@ -41,9 +41,7 @@
   </dependencyManagement>
 
   <modules>
-    <module>facade</module>
     <module>server-api</module>
-    <module>client</module>
     <module>db</module>
     <module>db-api</module>
     <module>parking-meter-service</module>
