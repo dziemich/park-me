@@ -36,5 +36,18 @@ public class SubZoneController {
         return Response.ok().build();
     }
 
+    @POST
+    @Path("/parkometer")
+    public Response addParkometer( ){
+        zoneDbOp.addParkometer();
+        return Response.ok().build();
+    }
+    @GET
+    @Path("/parkometer")
+    @Produces(MediaType.APPLICATION_JSON)
+    public  List<Parkometer>  getParkometers( ){
+        return zoneDbOp.getAllParkometers();
+    }
+
 }
 

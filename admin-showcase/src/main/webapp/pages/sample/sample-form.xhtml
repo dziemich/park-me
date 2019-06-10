@@ -17,33 +17,30 @@
                 <p:panel id="basic" header="Add new Zone">
 
                     <p:outputLabel for="employees-select" value="employees"/>
-                    <p:selectManyCheckbox  id="employees-select"  value="#{zoneFormBean.emps}" layout="grid" columns="5">
+                    <p:selectManyCheckbox  id="employees-select"  value="#{zoneFormBean.emps}" layout="grid" columns="3">
                         <f:selectItems value="#{employeeFormBean.getEmployeeIds()}" var="id" itemLabel="#{id}" itemValue="#{id}" />
                     </p:selectManyCheckbox >
 
 
+                    <p:outputLabel for="parkometer-select" value="parkometers"/>
+                    <p:selectManyCheckbox  id="parkometer-select"  value="#{zoneFormBean.parkometers}" layout="grid" columns="3">
+                        <f:selectItems value="#{zoneFormBean.getParkometrsIds()}" var="id" itemLabel="#{id}" itemValue="#{id}" />
+                    </p:selectManyCheckbox >
+
+                     <p:outputLabel for="parkinplace-select" value="parking places"/>
+                    <p:selectManyCheckbox  id="parkinplace-select"  value="#{zoneFormBean.parkingPlaces}" layout="grid" columns="3">
+                        <f:selectItems value="#{parkingPlacesBean.getParkingPlacesId()}" var="id" itemLabel="#{id}" itemValue="#{id}" />
+                    </p:selectManyCheckbox >
 
 
 
-
-                    <p:outputLabel for="input-name" value="name"/>
-                    <p:inputText id="input-name" value="#{employeeFormBean.name}"/>
-
-                    <p:outputLabel for="input-name" value="login"/>
-                    <p:inputText id="input-login" value="#{employeeFormBean.login}"/>
-
-                    <p:outputLabel for="input-pwd" value="password"/>
-                    <p:password id="input-pwd" value="#{employeeFormBean.password}"/>
+                    <p:commandButton value="Add" id="addParkometer"
+                                     action="#{zoneFormBean.addParkometer()}"
+                                     styleClass="btn-primary"
+                                     style="margin-right:20px;" ajax="false"/>
 
 
-                    <p:outputLabel for="zone-select" value="Zone"/>
-                    <p:selectOneMenu id="zone-select"  value="#{employeeFormBean.selectedIdZone}">
-                        <f:selectItems value="#{employeeFormBean.getIds()}"/>
-                    </p:selectOneMenu>
-                    <p:outputLabel for="admin-checkbox" value="admin"/>
-                    <br/>
-                    <p:selectBooleanCheckbox id="admin-checkbox" value="#{employeeFormBean.admin}"/>
-                    <br/>
+
                     <p:commandButton value="Add" id="nonAjax"
                                      action="#{employeeFormBean.addEmployee()}"
                                      styleClass="btn-primary"

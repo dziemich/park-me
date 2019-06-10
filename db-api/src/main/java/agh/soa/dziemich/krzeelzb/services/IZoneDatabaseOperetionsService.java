@@ -10,6 +10,10 @@ import java.util.List;
 public interface IZoneDatabaseOperetionsService {
 
     List<SubZone> getAll();
+
+    List<Parkometer> getAllParkometers();
+
     List<Long> getAllIds();
     void addSubZone(List<ParkingPlace> parkingPlaces, List<Parkometer> parkometers, List<Employee> employees);
+    void addParkometer();
 }
