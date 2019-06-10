@@ -42,5 +42,10 @@
       <artifactId>hibernate-core</artifactId>
       <version>5.4.2.Final</version>
     </dependency>
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-api</artifactId>
+      <version>8.0</version>
+    </dependency>
   </dependencies>
 </project>

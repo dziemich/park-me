@@ -1,31 +1,48 @@
 package com.github.adminfaces.showcase.mybeans;
 
 import agh.soa.dziemich.krzeelzb.entities.Employee;
+
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 import javax.inject.Named;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import agh.soa.dziemich.krzeelzb.entities.SubZone;
+import com.fasterxml.jackson.core.type.TypeReference;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 import org.omnifaces.cdi.ViewScoped;
+import org.primefaces.json.JSONArray;
 import org.primefaces.json.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;// in play 2.3
+
+import static java.lang.StrictMath.toIntExact;
 
 
 @ViewScoped
 @Named
 public class EmployeeFormBean implements Serializable {
 
+  Long id;
   String name;
   String login;
   String password;
   Boolean admin;
+  Integer selectedIdZone;
 
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
   public String getName() {
     return name;
   }
@@ -58,12 +75,60 @@ public class EmployeeFormBean implements Serializable {
     this.admin = admin;
   }
 
-  public List<Long> getIds() {
-    return List.of(1L, 2L, 3L, 4L);
+  public Integer getSelectedIdZone(){
+    return selectedIdZone;
   }
 
-  public void addEmployee() {
+  public void setSelectedIdZone(Integer selectedIdZone) {
+    this.selectedIdZone = selectedIdZone;
+  }
+
+  public List<Long> getIds() throws IOException {
+      ResteasyClient client = new ResteasyClientBuilder().build();
+      Response response =  client.target("http://127.0.0.1:8080/hr-management-service/hr/subzones/ids").request().get();
+      String jsonData = response.readEntity(String.class);
+      ObjectMapper mapper = new ObjectMapper();
+      List<Long> myObjects = mapper.readValue(jsonData, new TypeReference<List<Long>>(){});
+
+      return myObjects;
+
+  }
+
+
+  public List<Long> getEmployeeIds() throws IOException {
+    ResteasyClient client = new ResteasyClientBuilder().build();
+    Response response =  client.target("http://127.0.0.1:8080/hr-management-service/hr/employees").request().get();
+    String jsonData = response.readEntity(String.class);
+    ObjectMapper mapper = new ObjectMapper();
+    List<Employee> myObjects = mapper.readValue(jsonData, new TypeReference<List<Employee>>(){});
+
+    List<Long> empIds=new LinkedList<>();
+    for(Employee emp: myObjects){
+      empIds.add(emp.getId());
+
+    }
+    return empIds;
+
+  }
+
+
+
+
+
+  public List<SubZone> getSubZones() throws IOException {
+    ResteasyClient client = new ResteasyClientBuilder().build();
+    Response response =  client.target("http://127.0.0.1:8080/hr-management-service/hr/subzones/ids").request().get();
+    String jsonData = response.readEntity(String.class);
+    ObjectMapper mapper = new ObjectMapper();
+    List<SubZone> myObjects = mapper.readValue(jsonData, new TypeReference<List<SubZone>>(){});
+
+    return myObjects;
+
+  }
+
+  public void addEmployee() throws IOException {
     Employee emp = new Employee(login, name, password, admin);
+
     System.out.println("jestem useless buttonem");
     ResteasyClient client = new ResteasyClientBuilder().build();
     ResteasyWebTarget target = client.target("http://127.0.0.1:8080/hr-management-service/hr/employees/post");
@@ -71,14 +136,34 @@ public class EmployeeFormBean implements Serializable {
         .put("name", emp.getName())
         .put("login", emp.getLogin())
         .put("password", emp.getPassword())
-        .put("isAdmin", emp.getAdmin());
+        .put("admin", emp.getAdmin());
 
     String jsonStringified = jsonObject.toString();
+
     Response response = target.request()
         .post(Entity.entity(jsonStringified, MediaType.APPLICATION_JSON));
 
-    int status = response.getStatus();
-    System.out.println(status);
+    String idEmp = response.readEntity(String.class);
+
+    target=client.target("http://127.0.0.1:8080/hr-management-service/hr/employees/"+idEmp+"/zone");
+    JSONObject jsonObjectZone = new JSONObject()
+            .put("id", getSelectedIdZone());
+    String jsonStringifiedZone = jsonObjectZone.toString();
+    Response responseZone = target.request()
+            .put(Entity.entity(jsonStringifiedZone, MediaType.APPLICATION_JSON));
+  }
+
+  public void updatePassword(){
+    ResteasyClient client = new ResteasyClientBuilder().build();
+    ResteasyWebTarget target = client.target("http://127.0.0.1:8080/hr-management-service/hr/employees/"+id);
+    JSONObject jsonObject = new JSONObject()
+            .put("password", password);
+
+    String jsonStringified = jsonObject.toString();
+
+    Response response = target.request()
+            .put(Entity.entity(jsonStringified, MediaType.APPLICATION_JSON));
+
 
   }
 }

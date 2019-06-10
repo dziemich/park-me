@@ -28,18 +28,18 @@
     </ui:define>
 
     <ui:define name="title">
-        Forms
+        Employees
     </ui:define>
 
     <ui:define name="description">
-        Example of form controls
+        Management
     </ui:define>
 
     <ui:define name="body">
         <h:form>
             <p:spacer height="15px"/>
             <div class="ui-fluid">
-                <p:panel id="basic" header="Employee Form">
+                <p:panel id="basic" header="Employee Add Form">
                     <p:outputLabel for="input-name" value="name"/>
                     <p:inputText id="input-name" value="#{employeeFormBean.name}"/>
 
@@ -51,22 +51,42 @@
 
 
                     <p:outputLabel for="zone-select" value="Zone"/>
-                    <p:selectOneMenu id="zone-select">
+                    <p:selectOneMenu id="zone-select"  value="#{employeeFormBean.selectedIdZone}">
                         <f:selectItems value="#{employeeFormBean.getIds()}"/>
                     </p:selectOneMenu>
                     <p:outputLabel for="admin-checkbox" value="admin"/>
                     <br/>
                     <p:selectBooleanCheckbox id="admin-checkbox" value="#{employeeFormBean.admin}"/>
                     <br/>
-                    <p:commandButton value="Non-Ajax Submit" id="nonAjax"
+
+                    <p:commandButton value="Add" id="nonAjax"
                                      action="#{employeeFormBean.addEmployee()}"
-                                     style="margin-right:20px;" ajax="false"/>
-                    <p:commandButton value="Action"
-                                     id="cmdBtn"
-                                     type="submit"
                                      styleClass="btn-primary"
-                                     actionListener="#{employeeFormBean.addEmployee()}"
-                    />
+                                     style="margin-right:20px;" ajax="false"/>
+                </p:panel>
+            </div>
+        </h:form>
+
+
+        <h:form>
+            <p:spacer height="15px"/>
+            <div class="ui-fluid">
+                <p:panel id="basic-change" header="Employee's Password Change Form">
+
+                    <p:outputLabel for="id-select" value="employee's id"/>
+                    <p:selectOneMenu id="id-select"  value="#{employeeFormBean.id}">
+                        <f:selectItems value="#{employeeFormBean.getEmployeeIds()}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="input-pwd-new" value="new password"/>
+                    <p:password id="input-pwd-new" value="#{employeeFormBean.password}"/>
+                    <br/>
+                    <p:commandButton value="Change password" id="nonAjax2"
+                                     action="#{employeeFormBean.updatePassword()}"
+                                     styleClass="btn-primary"
+                                     style="margin-right:20px;" ajax="false"/>
+
+
                 </p:panel>
             </div>
         </h:form>

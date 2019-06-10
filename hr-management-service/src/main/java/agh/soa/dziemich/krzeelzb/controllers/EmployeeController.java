@@ -40,7 +40,8 @@ public class EmployeeController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addOne(Employee emp){
         employeesDbOp.addEmployee(emp);
-        return Response.ok().build();
+        System.out.println(emp.getId());
+        return Response.ok(employeesDbOp.findAll().get(employeesDbOp.findAll().size()-1).getId()).build();
     }
 
     @PUT
@@ -48,7 +49,7 @@ public class EmployeeController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addEmployeesZone(@PathParam("id") Long idEmp,SubZone zone){
         employeesDbOp.addEmployeesZone(idEmp,zone.getId());
-        return Response.ok().build();
+        return Response.ok(idEmp).build();
     }
 
     @POST
@@ -57,6 +58,14 @@ public class EmployeeController {
         employeesDbOp.addEmployee(emp);
         return Response.ok().build();
     }
+
+    @PUT
+    @Path("/{id}")
+    public Response updateEmployeePassword(@PathParam("id") Long idEmp,String pass){
+        employeesDbOp.updatePassword(idEmp,pass);
+        return Response.ok().build();
+    }
+
     @DELETE
     @Path("/{id}")
     public Response deleteUser(@PathParam("id") Long id){

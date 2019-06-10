@@ -12,7 +12,8 @@ public class EmployeeDao extends AbstractDao {
   }
 
   public void addEmployee(Employee emp) {
-    System.out.println(emp.getAdmin());
+    System.out.println("admin"+emp.getAdmin());
+
     entityManager.getTransaction().begin();
     entityManager.persist(emp);
     entityManager.getTransaction().commit();

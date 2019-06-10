@@ -20,9 +20,9 @@ TODOs:
 - [ ] Displaying appropriate information based on user role
 - [ ] Displaying queue messages
 - [ ] Docs
-- [ ] Clearing settings
+- [x] Clearing settings
 - [ ] Extending detection: new place taken, place has been freed, ticket has been bought
-- [ ] Changing passwords
-- [ ] Fix form bug where isAdmin is not sent
+- [x] Changing passwords
+- [x] Fix form bug where isAdmin is not sent
 
 https://drive.google.com/file/d/1liBxtRQuON9J-kv0vIKr_XE-u3pf7d82/view?usp=sharing

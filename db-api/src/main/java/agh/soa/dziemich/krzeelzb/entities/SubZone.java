@@ -2,6 +2,7 @@ package agh.soa.dziemich.krzeelzb.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 @Entity
@@ -26,10 +27,13 @@ public class SubZone implements Serializable {
   @Column(name = "id", nullable = false, unique = true)
   private Long id;
   @OneToMany
+  @JsonbTransient
   List<ParkingPlace> parkingPlaces;
   @OneToMany
+  @JsonbTransient
   List<Parkometer> parkometers;
   @OneToMany
+  @JsonbTransient
   List<Employee> employees;
 
   public SubZone() {
@@ -39,6 +43,12 @@ public class SubZone implements Serializable {
     if (!employees.contains(emp)){
     employees.add(emp);
     }
+  }
+
+  public SubZone(List<ParkingPlace> parkingPlaces, List<Parkometer> parkometers, List<Employee> employees) {
+    this.parkingPlaces = parkingPlaces;
+    this.parkometers = parkometers;
+    this.employees = employees;
   }
 
   public List<Employee> getEmployees() {

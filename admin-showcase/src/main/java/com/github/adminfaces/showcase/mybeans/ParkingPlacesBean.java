@@ -43,7 +43,6 @@ public class ParkingPlacesBean implements Serializable {
     ResteasyClient client = new ResteasyClientBuilder().build();
     Response response =  client.target(url).request().get();
     return response.readEntity(String.class);
-
   }
   private JSONArray mapToJsonArray(String json){
     return new JSONArray(json);
