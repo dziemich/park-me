@@ -33,8 +33,10 @@ public class ParkingPlacesBean implements Serializable {
 
   public List<ParkingPlace> getParkingPlaces() {
     String userName = userBean.findUser();
-    Employee employee = userManagementDbOpService.findAll().stream()
-        .filter(emp -> emp.getName().equals(userName))
+    Employee employee = userManagementDbOpService
+        .findAll()
+        .stream()
+        .filter(emp -> emp.getLogin().equals(userName))
         .findFirst()
         .orElseThrow(IllegalStateException::new);
     if(!employee.getAdmin()) {
