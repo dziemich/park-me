@@ -37,6 +37,7 @@ public class SubZone implements Serializable {
   @JsonbTransient
   List<ParkingPlace> parkingPlaces;
   @OneToMany
+  @LazyCollection(LazyCollectionOption.FALSE)
   @JsonbTransient
   List<Parkometer> parkometers;
   @OneToMany

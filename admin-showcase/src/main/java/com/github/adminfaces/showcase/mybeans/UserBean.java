@@ -38,6 +38,17 @@ public class UserBean implements Serializable {
         .orElseThrow(IllegalStateException::new);
   }
 
+  public Boolean getUserAdminPrivileges(){
+    String login = findUser();
+    return userManagementDbOpService
+        .findAll()
+        .stream()
+        .filter(emp -> emp.getLogin().equals(login))
+        .map(Employee::getAdmin)
+        .findFirst()
+        .orElseThrow(IllegalStateException::new);
+  }
+
   public String showName(){
     String login = findUser();
     return userManagementDbOpService
