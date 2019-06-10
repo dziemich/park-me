@@ -1,8 +1,11 @@
 package com.github.adminfaces.showcase.mybeans;
 
+import agh.soa.dziemich.krzeelzb.entities.Employee;
 import agh.soa.dziemich.krzeelzb.entities.ParkingPlace;
-
 import java.io.IOException;
+import agh.soa.dziemich.krzeelzb.entities.SubZone;
+import agh.soa.dziemich.krzeelzb.services.IParkingPlaceDatabaseOperationsService;
+import agh.soa.dziemich.krzeelzb.services.IUserManagementDatabaseOperationsService;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -13,33 +16,27 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import agh.soa.dziemich.krzeelzb.entities.Parkometer;
-import agh.soa.dziemich.krzeelzb.services.IParkingPlaceDatabaseOperationsService;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 import org.omnifaces.cdi.ViewScoped;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.json.JSONArray;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
-import java.io.IOException;
 
 @Named
 @ViewScoped
 public class ParkingPlacesBean implements Serializable {
   @EJB(lookup = "java:global/db/ParkingPlaceDatabaseOperationsService")
   IParkingPlaceDatabaseOperationsService parkingMeterDbOp;
+
+  @EJB(lookup = "java:global/db/UserManagementDatabaseOperationService")
+  IUserManagementDatabaseOperationsService userManagementDbOpService;
+
+  @Inject
+  UserBean userBean;
 
   private Long id;
   private String street;
@@ -49,8 +46,22 @@ public class ParkingPlacesBean implements Serializable {
   private LocalDateTime expirationTime;
   private Date expirationTimeDate;
 
-  public List<ParkingPlace> getParkingPlaces() throws IOException {
-   return parkingMeterDbOp.findAll();
+
+  public List<ParkingPlace> getParkingPlaces(){
+    String userName = userBean.findUser();
+    Employee employee = userManagementDbOpService.findAll().stream()
+            .filter(emp -> emp.getName().equals(userName))
+            .findFirst()
+            .orElseThrow(IllegalStateException::new);
+    if(!employee.getAdmin()) {
+      SubZone employeeSubZone = userManagementDbOpService.getEmployeeSubZone(employee.getId())
+              .get(0);
+      List<ParkingPlace> parkingPlaces = employeeSubZone.getParkingPlaces();
+      return parkingPlaces;
+    } else {
+      return parkingMeterDbOp.findAll();
+    }
+
   }
 
   public List<Long> getParkingPlacesId() throws IOException {
@@ -68,10 +79,12 @@ public class ParkingPlacesBean implements Serializable {
     facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
   }
 
+
   public void click() {
     PrimeFaces.current().ajax().update("form:display");
     PrimeFaces.current().executeScript("PF('dlg').show()");
   }
+
 
   public LocalDateTime convertToLocalDateTime(Date dateToConvert) {
     return LocalDateTime.ofInstant(

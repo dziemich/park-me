@@ -4,13 +4,16 @@ import agh.soa.dziemich.krzeelzb.entities.Employee;
 import agh.soa.dziemich.krzeelzb.entities.ParkingPlace;
 import agh.soa.dziemich.krzeelzb.entities.Parkometer;
 import agh.soa.dziemich.krzeelzb.entities.SubZone;
+import agh.soa.dziemich.krzeelzb.services.IZoneDatabaseOperetionsService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 import org.omnifaces.cdi.ViewScoped;
+import org.primefaces.json.JSONObject;
 
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
@@ -28,6 +31,8 @@ public class ZoneFormBean implements Serializable {
     List<ParkingPlace> parkingPlaces;
     List<Parkometer> parkometers;
 
+    @EJB(lookup = "java:global/db/ZoneDatabaseOpertionsService")
+    IZoneDatabaseOperetionsService zoneDbOp;
 
     public List<Long> getParkometrsIds() throws IOException {
         ResteasyClient client = new ResteasyClientBuilder().build();
@@ -51,8 +56,11 @@ public class ZoneFormBean implements Serializable {
                 .post(Entity.entity("", MediaType.APPLICATION_JSON));
     }
 
+    public void addZone() {
+        zoneDbOp.addSubZone(new SubZone(parkingPlaces,parkometers,emps));
+    }
 
-    
+
 
 
     public List<Employee> getEmps() {
@@ -64,9 +72,6 @@ public class ZoneFormBean implements Serializable {
     }
 
 
-    public void addZone(){
-        SubZone sz=new SubZone();
-    }
 
     public List<ParkingPlace> getParkingPlaces() {
         return parkingPlaces;
