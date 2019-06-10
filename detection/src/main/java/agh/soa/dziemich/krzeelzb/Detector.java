@@ -1,6 +1,7 @@
 package agh.soa.dziemich.krzeelzb;
 
 import agh.soa.dziemich.krzeelzb.entities.ParkingPlace;
+import agh.soa.dziemich.krzeelzb.queue.IQueueSender;
 import agh.soa.dziemich.krzeelzb.services.IParkingPlaceDatabaseOperationsService;
 import java.util.List;
 import javax.ejb.EJB;
@@ -13,17 +14,16 @@ public class Detector {
   @EJB(lookup = "java:global/db/ParkingPlaceDatabaseOperationsService")
   IParkingPlaceDatabaseOperationsService parkingMeterDbOp;
 
-  @EJB
-  QueueSender queueSender;
+  @EJB(lookup = "java:global/queue/QueueSender")
+  IQueueSender queueSender;
 
-  @Schedule(second = "*/20", minute = "*/1", hour = "*", persistent = false)
+  @Schedule(second = "0", minute = "*/1", hour = "*", persistent = false)
   public void doWork() {
     System.out.println("lala");
     List<ParkingPlace> parkingPlaces = parkingMeterDbOp.fetchExpiredParkingPlaces();
     parkingPlaces.forEach(pp -> {
-          queueSender.sendMessage(pp.getId().toString());
+          queueSender.sendExpirationMessage(pp.getId().toString());
         }
     );
-
   }
 }
