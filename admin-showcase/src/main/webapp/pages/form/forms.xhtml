@@ -36,7 +36,7 @@
     </ui:define>
 
     <ui:define name="body">
-        <h:form>
+        <h:form rendered="#{userBean.getUserAdminPrivileges()}">
             <p:spacer height="15px"/>
             <div class="ui-fluid">
                 <p:panel id="basic" header="Employee Add Form">
