@@ -53,21 +53,6 @@
                 </p:column>
             </p:dataTable>
         </div>
-        <div id="queue">
-            <h:form>
-                <h3>Send Message</h3>
-                <h:commandButton value="Fetch new events" type="submit"
-                                 action="#{viewClient.checkSSE()}"/>
-                <p:poll interval="3" update="tbl"/>
-                <p:dataTable var="list" id="tbl" rows="250"
-                             value="#{messageHolder.responseMessagesList}">
-                    <p:column headerText="SSE">
-                        <h:outputText value="#{list}"/>
-                    </p:column>
-                </p:dataTable>
-            </h:form>
-        </div>
-
 
         <p:spacer height="15px"/>
         <div class="row">
@@ -131,5 +116,19 @@
             <!-- /.col -->
         </div>
         <!-- /.row -->
+        <div id="queue">
+            <h:form>
+                <h3>Send Message</h3>
+                <h:commandButton value="Fetch new events" type="submit"
+                                 action="#{viewClient.checkSSE()}"/>
+                <p:poll interval="3" update="tbl"/>
+                <p:dataTable var="list" id="tbl" rows="250"
+                             value="#{messageHolder.responseMessagesList}">
+                    <p:column headerText="SSE">
+                        <h:outputText value="#{list}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </div>
     </ui:define>
 </ui:composition>
