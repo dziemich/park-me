@@ -7,6 +7,11 @@ import agh.soa.dziemich.krzeelzb.entities.SubZone;
 import agh.soa.dziemich.krzeelzb.services.IParkingPlaceDatabaseOperationsService;
 import agh.soa.dziemich.krzeelzb.services.IZoneDatabaseOperetionsService;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
+import java.io.IOException;
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -30,9 +35,18 @@ public class SubZoneController {
 
     @POST
     @Path("/post")
-    public Response addOneParkingPlace(SubZone sz){
-
-        zoneDbOp.addSubZone(sz.getParkingPlaces(),sz.getParkometers(),sz.getEmployees());
+    public Response addOneParkingPlace(String json){
+        ObjectMapper mapper = new ObjectMapper()
+            .registerModule(new ParameterNamesModule())
+            .registerModule(new Jdk8Module())
+            .registerModule(new JavaTimeModule());
+        SubZone subZone = null;
+        try {
+            subZone = mapper.readValue(json, SubZone.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        zoneDbOp.addSubZone(subZone.getParkingPlaces(),subZone.getParkometers(),subZone.getEmployees());
         return Response.ok().build();
     }
 
