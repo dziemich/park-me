@@ -18,10 +18,10 @@ TODOs:
 - [x] SOAP for parking places
 - [ ] Zone Form
 - [ ] Displaying appropriate information based on user role
-- [ ] Displaying queue messages
+- [x] Displaying queue messages
 - [ ] Docs
 - [x] Clearing settings
-- [ ] Extending detection: new place taken, place has been freed, ticket has been bought
+- [x] Extending detection: new place taken, place has been freed, ticket has been bought
 - [x] Changing passwords
 - [x] Fix form bug where isAdmin is not sent
 
