@@ -8,28 +8,31 @@ import javax.persistence.*;
 @Entity
 @Table(name = "subzone")
 @NamedQueries({
-               @NamedQuery(
-                name = "SubZone.findAll",
-                query = "SELECT sz FROM SubZone sz"
-        ),
-
-        @NamedQuery(
-                name = "SubZone.selectEmployees",
-                query = "SELECT employees  FROM SubZone"),
-        @NamedQuery(
-                name = "SubZone.findOne",
-                query = "SELECT sz FROM SubZone sz WHERE id = :id"
-        ),
+    @NamedQuery(
+        name = "SubZone.findAll",
+        query = "SELECT sz FROM SubZone sz"
+    ),
+    @NamedQuery(
+        name = "SubZone.selectEmployees",
+        query = "SELECT employees FROM SubZone"),
+    @NamedQuery(
+        name = "SubZone.findOne",
+        query = "SELECT sz FROM SubZone sz WHERE id = :id"
+    ),
+    @NamedQuery(
+        name = "Employee.findPlaces",
+        query = "SELECT sz.parkingPlaces FROM SubZone sz where :emp in employees"
+    )
 })
 public class SubZone implements Serializable {
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "id", nullable = false, unique = true)
   private Long id;
-  @OneToMany
+  @OneToMany(fetch = FetchType.EAGER)
   @JsonbTransient
   List<ParkingPlace> parkingPlaces;
-
   @OneToMany
   @JsonbTransient
   List<Parkometer> parkometers;
@@ -40,13 +43,14 @@ public class SubZone implements Serializable {
   public SubZone() {
   }
 
-  public void addEmployeeToSubZone(Employee emp){
-    if (!employees.contains(emp)){
-    employees.add(emp);
+  public void addEmployeeToSubZone(Employee emp) {
+    if (!employees.contains(emp)) {
+      employees.add(emp);
     }
   }
 
-  public SubZone(List<ParkingPlace> parkingPlaces, List<Parkometer> parkometers, List<Employee> employees) {
+  public SubZone(List<ParkingPlace> parkingPlaces, List<Parkometer> parkometers,
+      List<Employee> employees) {
     this.parkingPlaces = parkingPlaces;
     this.parkometers = parkometers;
     this.employees = employees;

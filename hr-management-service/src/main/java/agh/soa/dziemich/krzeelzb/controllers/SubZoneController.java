@@ -46,7 +46,7 @@ public class SubZoneController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        zoneDbOp.addSubZone(subZone.getParkingPlaces(),subZone.getParkometers(),subZone.getEmployees());
+        zoneDbOp.addSubZone(subZone);
         return Response.ok().build();
     }
 

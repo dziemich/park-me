@@ -18,7 +18,6 @@ public class ZoneDatabaseOpertionsService implements IZoneDatabaseOperetionsServ
     @Inject
     SubZoneDao subZoneDao;
 
-
     @Override
     public List<SubZone> getAll() {
         return subZoneDao.findAll();
@@ -30,7 +29,8 @@ public class ZoneDatabaseOpertionsService implements IZoneDatabaseOperetionsServ
     }
 
     @Override
-    public void addSubZone(List<ParkingPlace> parkingPlaces, List<Parkometer> parkometers, List<Employee> employees) {
-        subZoneDao.addSubZone(parkingPlaces,parkometers,employees);
+    public void addSubZone(SubZone subZone) {
+        subZoneDao.addSubZone(subZone);
     }
+
 }
