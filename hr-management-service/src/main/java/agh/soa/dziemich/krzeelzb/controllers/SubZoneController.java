@@ -30,9 +30,11 @@ public class SubZoneController {
 
     @POST
     @Path("/post")
-    public Response addOneParkingPlace(List<ParkingPlace> parkingPlaces, List<Parkometer> parkometers, List<Employee> employees){
-        zoneDbOp.addSubZone(parkingPlaces,parkometers,employees);
+    public Response addOneParkingPlace(SubZone sz){
+
+        zoneDbOp.addSubZone(sz.getParkingPlaces(),sz.getParkometers(),sz.getEmployees());
         return Response.ok().build();
     }
 
 }
+

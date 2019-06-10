@@ -29,6 +29,7 @@ public class SubZone implements Serializable {
   @OneToMany
   @JsonbTransient
   List<ParkingPlace> parkingPlaces;
+
   @OneToMany
   @JsonbTransient
   List<Parkometer> parkometers;
@@ -66,4 +67,21 @@ public class SubZone implements Serializable {
   public void setId(Long id) {
     this.id = id;
   }
+
+  public List<ParkingPlace> getParkingPlaces() {
+    return parkingPlaces;
+  }
+
+  public void setParkingPlaces(List<ParkingPlace> parkingPlaces) {
+    this.parkingPlaces = parkingPlaces;
+  }
+
+  public List<Parkometer> getParkometers() {
+    return parkometers;
+  }
+
+  public void setParkometers(List<Parkometer> parkometers) {
+    this.parkometers = parkometers;
+  }
+
 }
