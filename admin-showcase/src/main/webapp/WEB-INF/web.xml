@@ -86,7 +86,7 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>auth-form</web-resource-name>
-            <url-pattern>/pages/form/admin-only.xhtml</url-pattern>
+            <url-pattern>/pages/sample/sample-form.xhtml</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
