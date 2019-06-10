@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name = "subzone")
@@ -30,13 +32,16 @@ public class SubZone implements Serializable {
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "id", nullable = false, unique = true)
   private Long id;
-  @OneToMany(fetch = FetchType.EAGER)
+  @OneToMany
+  @LazyCollection(LazyCollectionOption.FALSE)
   @JsonbTransient
   List<ParkingPlace> parkingPlaces;
   @OneToMany
+  @LazyCollection(LazyCollectionOption.FALSE)
   @JsonbTransient
   List<Parkometer> parkometers;
   @OneToMany
+  @LazyCollection(LazyCollectionOption.FALSE)
   @JsonbTransient
   List<Employee> employees;
 

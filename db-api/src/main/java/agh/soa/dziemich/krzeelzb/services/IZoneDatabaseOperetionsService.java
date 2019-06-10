@@ -12,5 +12,6 @@ public interface IZoneDatabaseOperetionsService {
     List<SubZone> getAll();
     List<Long> getAllIds();
     void addSubZone(SubZone subZone);
+    List<SubZone> getParkingPlacesSubZone(Long ppId);
 
 }

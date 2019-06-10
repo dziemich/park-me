@@ -7,6 +7,7 @@ import agh.soa.dziemich.krzeelzb.entities.ParkingPlace;
 import agh.soa.dziemich.krzeelzb.entities.Parkometer;
 import agh.soa.dziemich.krzeelzb.entities.SubZone;
 
+import java.util.Collections;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -31,6 +32,20 @@ public class ZoneDatabaseOpertionsService implements IZoneDatabaseOperetionsServ
     @Override
     public void addSubZone(SubZone subZone) {
         subZoneDao.addSubZone(subZone);
+    }
+
+    @Override
+    public List<SubZone> getParkingPlacesSubZone(Long ppId) {
+        List<SubZone> zones = subZoneDao.findAll();
+        for (SubZone z : zones) {
+            List<ParkingPlace> parkingPlaces = z.getParkingPlaces();
+            for (ParkingPlace pp : parkingPlaces) {
+                if (pp.getId().equals(ppId)) {
+                    return List.of(z);
+                }
+            }
+        }
+        return Collections.emptyList();
     }
 
 }

@@ -5,9 +5,12 @@ import agh.soa.dziemich.krzeelzb.entities.ParkingPlace;
 import agh.soa.dziemich.krzeelzb.entities.SubZone;
 import agh.soa.dziemich.krzeelzb.services.IParkingPlaceDatabaseOperationsService;
 import agh.soa.dziemich.krzeelzb.services.IUserManagementDatabaseOperationsService;
+import agh.soa.dziemich.krzeelzb.services.IZoneDatabaseOperetionsService;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Supplier;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -28,6 +31,9 @@ public class ParkingPlacesBean implements Serializable {
   @EJB(lookup = "java:global/db/UserManagementDatabaseOperationService")
   IUserManagementDatabaseOperationsService userManagementDbOpService;
 
+  @EJB(lookup = "java:global/db/ZoneDatabaseOpertionsService")
+  IZoneDatabaseOperetionsService zoneDbOp;
+
   @Inject
   UserBean userBean;
 
@@ -39,7 +45,7 @@ public class ParkingPlacesBean implements Serializable {
         .filter(emp -> emp.getLogin().equals(userName))
         .findFirst()
         .orElseThrow(IllegalStateException::new);
-    if(!employee.getAdmin()) {
+    if (!employee.getAdmin()) {
       SubZone employeeSubZone = userManagementDbOpService.getEmployeeSubZone(employee.getId())
           .get(0);
       List<ParkingPlace> parkingPlaces = employeeSubZone.getParkingPlaces();
@@ -49,27 +55,43 @@ public class ParkingPlacesBean implements Serializable {
     }
   }
 
-  public int numberOfFreePlaces() {
-    return mapToJsonArray(makeRequest("http://127.0.0.1:8080/hr-management-service/hr/parkingplaces/freePlaces")).length();
+  private boolean filterParkingPlaceByUser(Long empId, ParkingPlace pp) {
+    List<SubZone> parkingPlacesSubZone = zoneDbOp.getParkingPlacesSubZone(pp.getId());
+    List<Employee> subZoneEmployees = parkingPlacesSubZone.get(0)
+        .getEmployees();
+    Optional<Employee> correctEmployee = subZoneEmployees
+        .stream()
+        .filter(emp -> emp.getId().equals(empId))
+        .findFirst();
+    return correctEmployee.isPresent();
   }
 
-  public int numberOfExpiredPlaces() {
-    return mapToJsonArray(makeRequest("http://127.0.0.1:8080/hr-management-service/hr/parkingplaces/expiredPlaces")).length();
-  }
-  public int numberOfTakenPlaces() {
-    return mapToJsonArray(makeRequest("http://127.0.0.1:8080/hr-management-service/hr/parkingplaces/takenPlaces")).length();
+  private long getNumberOfPlaces(Supplier<List<ParkingPlace>> fetcher){
+    Long empId = userBean.getUserId();
+    Boolean userAdminPrivileges = userBean.getUserAdminPrivileges();
+    List<ParkingPlace> freeParkingPlaces = fetcher.get();
+    return userAdminPrivileges ?
+        (long) freeParkingPlaces.size()
+        :
+            freeParkingPlaces
+                .stream()
+                .filter(pp -> filterParkingPlaceByUser(empId, pp))
+                .count();
   }
 
-  public int numberOfAllParkingPlaces() {
-    return mapToJsonArray(makeRequest("http://127.0.0.1:8080/hr-management-service/hr/parkingplaces/")).length();
+  public long numberOfFreePlaces() {
+    return getNumberOfPlaces(() -> parkingMeterDbOp.fetchFreeParkingPlaces());
   }
 
-  private String makeRequest(String url){
-    ResteasyClient client = new ResteasyClientBuilder().build();
-    Response response =  client.target(url).request().get();
-    return response.readEntity(String.class);
+  public long numberOfExpiredPlaces() {
+    return getNumberOfPlaces(() -> parkingMeterDbOp.fetchExpiredParkingPlaces());
   }
-  private JSONArray mapToJsonArray(String json){
-    return new JSONArray(json);
+
+  public long numberOfTakenPlaces() {
+    return getNumberOfPlaces(() -> parkingMeterDbOp.fetchTakenParkingPlaces());
+  }
+
+  public long numberOfAllParkingPlaces() {
+    return getNumberOfPlaces(() -> parkingMeterDbOp.findAll());
   }
 }
