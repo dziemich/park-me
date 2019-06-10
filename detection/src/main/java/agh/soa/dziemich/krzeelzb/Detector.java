@@ -17,12 +17,12 @@ public class Detector {
   @EJB(lookup = "java:global/queue/QueueSender")
   IQueueSender queueSender;
 
-  @Schedule(second = "*/20", minute = "*/1", hour = "*", persistent = false)
+  @Schedule(second = "0", minute = "*/1", hour = "*", persistent = false)
   public void doWork() {
     System.out.println("lala");
     List<ParkingPlace> parkingPlaces = parkingMeterDbOp.fetchExpiredParkingPlaces();
     parkingPlaces.forEach(pp -> {
-          queueSender.sendMessage(pp.getId().toString());
+          queueSender.sendExpirationMessage(pp.getId().toString());
         }
     );
   }
