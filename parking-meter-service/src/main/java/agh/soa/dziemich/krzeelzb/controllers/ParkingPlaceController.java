@@ -14,6 +14,8 @@ public class ParkingPlaceController {
   @EJB(lookup = "java:global/db/ParkingPlaceDatabaseOperationsService")
   IParkingPlaceDatabaseOperationsService parkingMeterDbOp;
 
+
+
   @POST
   @Path("/{id}")
   public Response addOne(@PathParam("id") Long id, ParkingPlaceModel ppm){

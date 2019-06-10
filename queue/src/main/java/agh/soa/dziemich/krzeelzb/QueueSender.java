@@ -1,6 +1,8 @@
 package agh.soa.dziemich.krzeelzb;
 
+import agh.soa.dziemich.krzeelzb.queue.IQueueSender;
 import javax.annotation.Resource;
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.jms.JMSContext;
@@ -8,7 +10,8 @@ import javax.jms.Queue;
 import javax.jms.TextMessage;
 
 @Stateless
-public class QueueSender {
+@Remote(IQueueSender.class)
+public class QueueSender implements IQueueSender {
 
   @Inject
   private JMSContext context;

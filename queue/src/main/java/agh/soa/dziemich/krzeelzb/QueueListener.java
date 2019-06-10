@@ -1,13 +1,16 @@
 package agh.soa.dziemich.krzeelzb;
 
+import agh.soa.dziemich.krzeelzb.queue.IQueueListener;
 import javax.annotation.Resource;
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.jms.JMSContext;
 import javax.jms.Queue;
 
 @Stateless
-public class QueueListener {
+@Remote(IQueueListener.class)
+public class QueueListener implements IQueueListener {
 
   @Inject
   private JMSContext context;
