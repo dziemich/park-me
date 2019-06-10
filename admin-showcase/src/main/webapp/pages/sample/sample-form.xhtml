@@ -16,31 +16,42 @@
             <div class="ui-fluid">
                 <p:panel id="basic" header="Add new Zone">
 
-                    <p:outputLabel for="employees-select" value="employees"/>
-                    <p:selectManyCheckbox  id="employees-select"  value="#{zoneFormBean.emps}" layout="grid" columns="3">
+                    <p:outputLabel for="employees-select" value="Choose employees"/>
+                    <p:selectManyCheckbox  id="employees-select"  value="#{zoneFormBean.empsId}" layout="responsive" columns="60">
                         <f:selectItems value="#{employeeFormBean.getEmployeeIds()}" var="id" itemLabel="#{id}" itemValue="#{id}" />
                     </p:selectManyCheckbox >
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
 
-
-                    <p:outputLabel for="parkometer-select" value="parkometers"/>
-                    <p:selectManyCheckbox  id="parkometer-select"  value="#{zoneFormBean.parkometers}" layout="grid" columns="3">
+                    <p:outputLabel for="parkometer-select" value="Choose parkometers"/>
+                    <p:selectManyCheckbox  id="parkometer-select"  value="#{zoneFormBean.parkometersId}" layout="responsive" columns="60">
                         <f:selectItems value="#{zoneFormBean.getParkometrsIds()}" var="id" itemLabel="#{id}" itemValue="#{id}" />
                     </p:selectManyCheckbox >
+<br></br>
 
+                    <p:outputLabel for="addParkometer" value="Or ad new parkometer"/>
 
-                    <p:commandButton value="Add Zone" id="addParkometer"
+                    <p:commandButton value="Add Parkometer" id="addParkometer"
                                      action="#{zoneFormBean.addParkometer()}"
                                      styleClass="btn-primary"
                                       ajax="false"/>
 
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
 
-                    <p:outputLabel for="parkinplace-select" value="parking places"/>
-                    <p:selectManyCheckbox  id="parkinplace-select"  value="#{zoneFormBean.parkingPlaces}" layout="grid" columns="3">
+                    <p:outputLabel for="parkinplace-select" value="Choose parking places"/>
+                    <p:selectManyCheckbox  id="parkinplace-select"  value="#{zoneFormBean.parkingPlacesId}" layout="responsive" columns="60">
                         <f:selectItems value="#{parkingPlacesBean.getParkingPlacesId()}" var="id" itemLabel="#{id}" itemValue="#{id}" />
                     </p:selectManyCheckbox >
 
-
-                    <h:form>
+<br></br>
+<br></br>
+<br></br>
+                    <h:form id="pp-form">
                         <p:outputLabel for="street-name" value="street"/>
                         <p:inputText id="street-name" value="#{parkingPlacesBean.street}"/>
                         <p:outputLabel for="taken-checkbox" value="taken"/>
@@ -54,6 +65,10 @@
 
                         <p:outputLabel for="time" value="Expiration time" />
                         <p:datePicker id="time" value="#{parkingPlacesBean.expirationTimeDate}" showTime="true"/>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
 
                         <p:commandButton value="Add Parking Place" id="addParkingPlace"
                                          action="#{parkingPlacesBean.addParkingPlace()}"
@@ -61,8 +76,10 @@
                                          ajax="false"/>
 
                     </h:form>
+                    <br></br> <br></br>
                     <br></br>
-
+                    <br></br>
+                    <br></br>
 
 
 
@@ -74,7 +91,6 @@
                 </p:panel>
             </div>
         </h:form>
-
 
 
     </ui:define>

@@ -13,6 +13,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -71,6 +72,14 @@ public class ParkingPlacesBean implements Serializable {
       ids.add(p.getId());
     }
     return ids;
+  }
+
+  public List<Long> getParkingPlacesWithoutSubZone() throws IOException {
+    EmployeeFormBean empBean=new EmployeeFormBean();
+    List<Long> szIds=empBean.getIds();
+    return getParkingPlacesId().stream()
+            .filter(s->!szIds.contains(s))
+            .collect(Collectors.toList());
   }
 
   public void onDateSelect(SelectEvent event) {

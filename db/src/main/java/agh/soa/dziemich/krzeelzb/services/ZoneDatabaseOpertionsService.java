@@ -27,11 +27,6 @@ public class ZoneDatabaseOpertionsService implements IZoneDatabaseOperetionsServ
     }
 
     @Override
-    public List<Parkometer> getAllParkometers() {
-        return parkometerDao.findAll();
-    }
-
-    @Override
     public List<Long> getAllIds() {
         return subZoneDao.getAllIds();
     }
@@ -45,6 +40,15 @@ public class ZoneDatabaseOpertionsService implements IZoneDatabaseOperetionsServ
     @Override
     public void addParkometer() {
         parkometerDao.addParkometer();
+    }
+    @Override
+    public List<Parkometer> getAllParkometers() {
+        return parkometerDao.findAll();
+    }
+
+    @Override
+    public List<Parkometer> getOne(Long id){
+        return parkometerDao.findOne(id);
     }
 
 }

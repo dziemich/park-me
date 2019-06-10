@@ -10,6 +10,10 @@ import javax.persistence.*;
                 name = "Parkometer.findAll",
                 query = "SELECT p FROM Parkometer p"
         ),
+        @NamedQuery(
+                name = "Parkometer.findOne",
+                query = "SELECT sz FROM Parkometer sz WHERE id = :id"
+        ),
 
 })
 public class Parkometer implements Serializable {

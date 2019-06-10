@@ -19,5 +19,11 @@ public class ParkometerDao extends AbstractDao{
                 .createNamedQuery("Parkometer.findAll", Parkometer.class)
                 .getResultList();
     }
+    public List<Parkometer> findOne(Long id) {
+        return entityManager
+                .createNamedQuery("Parkometer.findOne", Parkometer.class)
+                .setParameter("id", id)
+                .getResultList();
+    }
 
 }

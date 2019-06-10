@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.ws.rs.client.Entity;
@@ -13,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import agh.soa.dziemich.krzeelzb.entities.SubZone;
+import agh.soa.dziemich.krzeelzb.services.IZoneDatabaseOperetionsService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
@@ -35,6 +38,9 @@ public class EmployeeFormBean implements Serializable {
   String password;
   Boolean admin;
   Integer selectedIdZone;
+
+  @EJB(lookup = "java:global/db/ZoneDatabaseOpertionsService")
+  IZoneDatabaseOperetionsService zoneDbOp;
 
   public Long getId() {
     return id;
@@ -83,6 +89,7 @@ public class EmployeeFormBean implements Serializable {
     this.selectedIdZone = selectedIdZone;
   }
 
+
   public List<Long> getIds() throws IOException {
       ResteasyClient client = new ResteasyClientBuilder().build();
       Response response =  client.target("http://127.0.0.1:8080/hr-management-service/hr/subzones/ids").request().get();
@@ -110,19 +117,34 @@ public class EmployeeFormBean implements Serializable {
     return empIds;
 
   }
+  public List<Long> getEmployeeIdsWithoutZone() throws IOException {
+    List<SubZone> szIds=getSubZones();
+    System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    List<Long> empsWithZone= new LinkedList<>();
+    for(SubZone sz: szIds){
+      if(!sz.getEmployees().isEmpty()) {
+        for (Employee e : sz.getEmployees()) {
+          System.out.println(e.getId());
+          empsWithZone.add(e.getId());
+        }
+      }
+    }
 
+    List<Long> allEmps=getEmployeeIds();
+    allEmps.removeAll(empsWithZone);
+    return allEmps;
 
-
+  }
 
 
   public List<SubZone> getSubZones() throws IOException {
-    ResteasyClient client = new ResteasyClientBuilder().build();
-    Response response =  client.target("http://127.0.0.1:8080/hr-management-service/hr/subzones/ids").request().get();
-    String jsonData = response.readEntity(String.class);
-    ObjectMapper mapper = new ObjectMapper();
-    List<SubZone> myObjects = mapper.readValue(jsonData, new TypeReference<List<SubZone>>(){});
+//    ResteasyClient client = new ResteasyClientBuilder().build();
+//    Response response =  client.target("http://127.0.0.1:8080/hr-management-service/hr/subzones").request().get();
+//    String jsonData = response.readEntity(String.class);
+//    ObjectMapper mapper = new ObjectMapper();
+//    List<SubZone> myObjects = mapper.readValue(jsonData, new TypeReference<List<SubZone>>(){});
 
-    return myObjects;
+    return zoneDbOp.getAll();
 
   }
 

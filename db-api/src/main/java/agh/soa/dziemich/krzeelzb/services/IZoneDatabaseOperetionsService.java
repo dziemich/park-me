@@ -17,4 +17,6 @@ public interface IZoneDatabaseOperetionsService {
 
     void addParkometer();
     void addSubZone(SubZone subZone);
+
+    List<Parkometer> getOne(Long id);
 }
