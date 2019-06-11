@@ -49,13 +49,16 @@
                     <p:outputLabel for="input-pwd" value="password"/>
                     <p:password id="input-pwd" value="#{employeeFormBean.password}"/>
 
-
+                    <p:outputLabel for="zone-checkbox" value="admin"/>
+                    <p:selectBooleanCheckbox id="zone-checkbox" value="#{employeeFormBean.zone}"/>
+                    <br/>
                     <p:outputLabel for="zone-select" value="Zone"/>
                     <p:selectOneMenu id="zone-select"  value="#{employeeFormBean.selectedIdZone}">
                         <f:selectItems value="#{employeeFormBean.getIds()}"/>
                     </p:selectOneMenu>
                     <p:outputLabel for="admin-checkbox" value="admin"/>
                     <br/>
+
                     <p:selectBooleanCheckbox id="admin-checkbox" value="#{employeeFormBean.admin}"/>
                     <br/>
 

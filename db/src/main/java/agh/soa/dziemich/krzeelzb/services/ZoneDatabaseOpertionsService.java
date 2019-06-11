@@ -1,6 +1,7 @@
 package agh.soa.dziemich.krzeelzb.services;
 
 
+import agh.soa.dziemich.krzeelzb.dao.ParkometerDao;
 import agh.soa.dziemich.krzeelzb.dao.SubZoneDao;
 import agh.soa.dziemich.krzeelzb.entities.Employee;
 import agh.soa.dziemich.krzeelzb.entities.ParkingPlace;
@@ -18,6 +19,8 @@ import java.util.List;
 public class ZoneDatabaseOpertionsService implements IZoneDatabaseOperetionsService {
     @Inject
     SubZoneDao subZoneDao;
+    @Inject
+    ParkometerDao parkometerDao;
 
     @Override
     public List<SubZone> getAll() {
@@ -46,6 +49,20 @@ public class ZoneDatabaseOpertionsService implements IZoneDatabaseOperetionsServ
             }
         }
         return Collections.emptyList();
+    }
+
+    @Override
+    public void addParkometer() {
+        parkometerDao.addParkometer();
+    }
+    @Override
+    public List<Parkometer> getAllParkometers() {
+        return parkometerDao.findAll();
+    }
+
+    @Override
+    public List<Parkometer> getOne(Long id){
+        return parkometerDao.findOne(id);
     }
 
 }
