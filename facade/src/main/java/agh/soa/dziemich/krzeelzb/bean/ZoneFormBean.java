@@ -9,22 +9,20 @@ import agh.soa.dziemich.krzeelzb.services.IUserManagementDatabaseOperationsServi
 import agh.soa.dziemich.krzeelzb.services.IZoneDatabaseOperetionsService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.jboss.resteasy.client.jaxrs.ResteasyClient;
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
-import org.omnifaces.cdi.ViewScoped;
-import org.primefaces.json.JSONObject;
-
-import javax.ejb.EJB;
-import javax.inject.Named;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.ejb.EJB;
+import javax.inject.Named;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import org.jboss.resteasy.client.jaxrs.ResteasyClient;
+import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
+import org.omnifaces.cdi.ViewScoped;
 
 @Named
 @ViewScoped

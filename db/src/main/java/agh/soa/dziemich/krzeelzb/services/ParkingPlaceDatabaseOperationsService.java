@@ -2,10 +2,7 @@ package agh.soa.dziemich.krzeelzb.services;
 
 import agh.soa.dziemich.krzeelzb.dao.ParkingPlaceDao;
 import agh.soa.dziemich.krzeelzb.entities.ParkingPlace;
-
-import agh.soa.dziemich.krzeelzb.entities.SubZone;
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.ejb.Remote;

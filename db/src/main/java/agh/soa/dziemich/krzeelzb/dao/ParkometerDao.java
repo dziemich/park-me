@@ -1,8 +1,6 @@
 package agh.soa.dziemich.krzeelzb.dao;
 
-import agh.soa.dziemich.krzeelzb.entities.ParkingPlace;
 import agh.soa.dziemich.krzeelzb.entities.Parkometer;
-
 import java.util.List;
 
 public class ParkometerDao extends AbstractDao{

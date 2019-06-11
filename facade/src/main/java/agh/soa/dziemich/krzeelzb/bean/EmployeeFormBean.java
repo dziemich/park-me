@@ -1,32 +1,24 @@
 package agh.soa.dziemich.krzeelzb.bean;
 
 import agh.soa.dziemich.krzeelzb.entities.Employee;
-
+import agh.soa.dziemich.krzeelzb.entities.SubZone;
+import agh.soa.dziemich.krzeelzb.services.IZoneDatabaseOperetionsService;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import agh.soa.dziemich.krzeelzb.entities.SubZone;
-import agh.soa.dziemich.krzeelzb.services.IZoneDatabaseOperetionsService;
-import clojure.lang.IFn;
-import com.fasterxml.jackson.core.type.TypeReference;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 import org.omnifaces.cdi.ViewScoped;
-import org.primefaces.json.JSONArray;
 import org.primefaces.json.JSONObject;
-import com.fasterxml.jackson.databind.ObjectMapper;// in play 2.3
-
-import static java.lang.StrictMath.toIntExact;
 
 
 @ViewScoped

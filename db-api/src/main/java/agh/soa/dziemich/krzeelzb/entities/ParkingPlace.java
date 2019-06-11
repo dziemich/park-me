@@ -2,7 +2,6 @@ package agh.soa.dziemich.krzeelzb.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.persistence.Column;

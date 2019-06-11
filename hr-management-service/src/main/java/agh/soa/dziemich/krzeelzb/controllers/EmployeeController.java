@@ -1,16 +1,20 @@
 package agh.soa.dziemich.krzeelzb.controllers;
 
 import agh.soa.dziemich.krzeelzb.entities.Employee;
-import agh.soa.dziemich.krzeelzb.entities.ParkingPlace;
 import agh.soa.dziemich.krzeelzb.entities.SubZone;
 import agh.soa.dziemich.krzeelzb.services.IUserManagementDatabaseOperationsService;
-
-import java.time.LocalDateTime;
+import java.util.List;
 import javax.ejb.EJB;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 @Path("/employees")
 public class EmployeeController {

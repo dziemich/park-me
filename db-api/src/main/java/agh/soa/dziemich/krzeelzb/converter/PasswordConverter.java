@@ -1,9 +1,8 @@
 package agh.soa.dziemich.krzeelzb.converter;
 
+import javax.persistence.AttributeConverter;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
-
-import javax.persistence.AttributeConverter;
 
 public class PasswordConverter implements AttributeConverter<String, String> {
 

@@ -1,11 +1,10 @@
 package agh.soa.dziemich.krzeelzb.bean;
 
+import java.io.Serializable;
+import javax.inject.Named;
 import org.omnifaces.cdi.ViewScoped;
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
-
-import javax.inject.Named;
-import java.io.Serializable;
 
 /**
  * Created by rmpestano on 04/02/17.

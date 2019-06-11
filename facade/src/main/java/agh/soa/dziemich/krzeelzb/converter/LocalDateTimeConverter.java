@@ -1,11 +1,8 @@
 package agh.soa.dziemich.krzeelzb.converter;
 
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
 import java.util.Locale;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;

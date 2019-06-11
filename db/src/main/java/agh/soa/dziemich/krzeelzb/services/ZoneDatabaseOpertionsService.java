@@ -3,16 +3,14 @@ package agh.soa.dziemich.krzeelzb.services;
 
 import agh.soa.dziemich.krzeelzb.dao.ParkometerDao;
 import agh.soa.dziemich.krzeelzb.dao.SubZoneDao;
-import agh.soa.dziemich.krzeelzb.entities.Employee;
 import agh.soa.dziemich.krzeelzb.entities.ParkingPlace;
 import agh.soa.dziemich.krzeelzb.entities.Parkometer;
 import agh.soa.dziemich.krzeelzb.entities.SubZone;
-
 import java.util.Collections;
+import java.util.List;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import java.util.List;
 
 @Stateless
 @Remote(IZoneDatabaseOperetionsService.class)

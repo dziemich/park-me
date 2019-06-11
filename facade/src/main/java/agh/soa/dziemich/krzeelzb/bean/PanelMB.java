@@ -4,13 +4,12 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import org.primefaces.event.CloseEvent;
-import org.primefaces.event.ToggleEvent;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import org.omnifaces.cdi.ViewScoped;
+import org.primefaces.event.CloseEvent;
+import org.primefaces.event.ToggleEvent;
 
 /**
  * Created by rmpestano on 23/01/17.

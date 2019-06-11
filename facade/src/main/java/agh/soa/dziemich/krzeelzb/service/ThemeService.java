@@ -16,12 +16,11 @@
 package agh.soa.dziemich.krzeelzb.service;
 
 import agh.soa.dziemich.krzeelzb.model.Theme;
-
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class ThemeService implements Serializable {

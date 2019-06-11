@@ -1,12 +1,6 @@
 package agh.soa.dziemich.krzeelzb.dao;
 
-import agh.soa.dziemich.krzeelzb.entities.Employee;
-import agh.soa.dziemich.krzeelzb.entities.ParkingPlace;
-import agh.soa.dziemich.krzeelzb.entities.Parkometer;
 import agh.soa.dziemich.krzeelzb.entities.SubZone;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
 import java.util.LinkedList;
 import java.util.List;
 

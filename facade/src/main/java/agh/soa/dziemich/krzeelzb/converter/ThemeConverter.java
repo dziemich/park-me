@@ -17,7 +17,6 @@ package agh.soa.dziemich.krzeelzb.converter;
 
 import agh.soa.dziemich.krzeelzb.model.Theme;
 import agh.soa.dziemich.krzeelzb.service.ThemeService;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;

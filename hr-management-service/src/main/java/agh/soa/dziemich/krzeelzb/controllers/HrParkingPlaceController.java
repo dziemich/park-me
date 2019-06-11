@@ -2,12 +2,16 @@ package agh.soa.dziemich.krzeelzb.controllers;
 
 import agh.soa.dziemich.krzeelzb.entities.ParkingPlace;
 import agh.soa.dziemich.krzeelzb.services.IParkingPlaceDatabaseOperationsService;
-
+import java.util.List;
 import javax.ejb.EJB;
-import javax.ws.rs.*;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 @Path("/parkingplaces")
 public class HrParkingPlaceController {

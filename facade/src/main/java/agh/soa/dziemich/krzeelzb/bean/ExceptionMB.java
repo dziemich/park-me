@@ -2,12 +2,11 @@ package agh.soa.dziemich.krzeelzb.bean;
 
 import com.github.adminfaces.template.exception.AccessDeniedException;
 import com.github.adminfaces.template.exception.BusinessException;
-import org.omnifaces.cdi.ViewScoped;
-
+import java.io.Serializable;
 import javax.faces.application.ViewExpiredException;
 import javax.inject.Named;
 import javax.persistence.OptimisticLockException;
-import java.io.Serializable;
+import org.omnifaces.cdi.ViewScoped;
 
 /**
  * Created by rmpestano on 07/01/17.

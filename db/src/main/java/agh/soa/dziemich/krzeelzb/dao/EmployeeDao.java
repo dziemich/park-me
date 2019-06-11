@@ -1,8 +1,6 @@
 package agh.soa.dziemich.krzeelzb.dao;
 
 import agh.soa.dziemich.krzeelzb.entities.Employee;
-import agh.soa.dziemich.krzeelzb.entities.SubZone;
-
 import java.util.List;
 
 public class EmployeeDao extends AbstractDao {
