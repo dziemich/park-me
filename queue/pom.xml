@@ -38,7 +38,7 @@
     </dependency>
     <dependency>
       <groupId>agh.soa.dziemich.krzeelzb</groupId>
-      <artifactId>server-api</artifactId>
+      <artifactId>queue-api</artifactId>
       <version>1.0</version>
       <scope>compile</scope>
     </dependency>
