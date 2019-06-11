@@ -4,7 +4,7 @@ import agh.soa.dziemich.krzeelzb.entities.SubZone;
 import java.util.LinkedList;
 import java.util.List;
 
-public class SubZoneDao extends AbstractDao{
+public class SubZoneDao extends AbstractDao {
 
   public List<SubZone> findAll() {
     return entityManager
@@ -18,7 +18,6 @@ public class SubZoneDao extends AbstractDao{
         .setParameter("id", id)
         .getResultList();
   }
-
 
   public void addSubZone(SubZone subZone) {
     entityManager.getTransaction().begin();

@@ -27,7 +27,7 @@ public class UserBean implements Serializable {
     return principal.getName();
   }
 
-  public Long getUserId(){
+  public Long getUserId() {
     String login = findUser();
     return userManagementDbOpService
         .findAll()
@@ -38,7 +38,7 @@ public class UserBean implements Serializable {
         .orElseThrow(IllegalStateException::new);
   }
 
-  public Boolean getUserAdminPrivileges(){
+  public Boolean getUserAdminPrivileges() {
     String login = findUser();
     return userManagementDbOpService
         .findAll()
@@ -49,7 +49,7 @@ public class UserBean implements Serializable {
         .orElseThrow(IllegalStateException::new);
   }
 
-  public String showName(){
+  public String showName() {
     String login = findUser();
     return userManagementDbOpService
         .findAll()
@@ -60,7 +60,7 @@ public class UserBean implements Serializable {
         .orElseThrow(IllegalStateException::new);
   }
 
-  public void logout(){
+  public void logout() {
     Faces.getSession().invalidate();
     ExternalContext ec = Faces.getExternalContext();
     try {

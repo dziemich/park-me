@@ -6,15 +6,17 @@ import java.util.List;
 
 public interface IZoneDatabaseOperetionsService {
 
-    List<SubZone> getAll();
+  List<SubZone> getAll();
 
-    List<Parkometer> getAllParkometers();
+  List<Parkometer> getAllParkometers();
 
-    List<Long> getAllIds();
+  List<Long> getAllIds();
 
-    void addParkometer();
-    void addSubZone(SubZone subZone);
-    List<SubZone> getParkingPlacesSubZone(Long ppId);
+  void addParkometer();
 
-    List<Parkometer> getOne(Long id);
+  void addSubZone(SubZone subZone);
+
+  List<SubZone> getParkingPlacesSubZone(Long ppId);
+
+  List<Parkometer> getOne(Long id);
 }

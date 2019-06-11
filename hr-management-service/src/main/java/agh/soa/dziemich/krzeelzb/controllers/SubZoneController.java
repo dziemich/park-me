@@ -19,48 +19,53 @@ import javax.ws.rs.core.Response;
 
 @Path("/subzones")
 public class SubZoneController {
-    @EJB(lookup = "java:global/db/ZoneDatabaseOpertionsService")
-    IZoneDatabaseOperetionsService zoneDbOp;
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<SubZone> getAll(){ return zoneDbOp.getAll();}
+  @EJB(lookup = "java:global/db/ZoneDatabaseOpertionsService")
+  IZoneDatabaseOperetionsService zoneDbOp;
 
-    @GET
-    @Path("/ids")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Long> getAllIds(){ return zoneDbOp.getAllIds();}
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  public List<SubZone> getAll() {
+    return zoneDbOp.getAll();
+  }
 
+  @GET
+  @Path("/ids")
+  @Produces(MediaType.APPLICATION_JSON)
+  public List<Long> getAllIds() {
+    return zoneDbOp.getAllIds();
+  }
 
-    @POST
-    @Path("/post")
-    public Response addOneParkingPlace(String json){
-        ObjectMapper mapper = new ObjectMapper()
-            .registerModule(new ParameterNamesModule())
-            .registerModule(new Jdk8Module())
-            .registerModule(new JavaTimeModule());
-        SubZone subZone = null;
-        try {
-            subZone = mapper.readValue(json, SubZone.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        zoneDbOp.addSubZone(subZone);
-        return Response.ok().build();
+  @POST
+  @Path("/post")
+  public Response addOneParkingPlace(String json) {
+    ObjectMapper mapper = new ObjectMapper()
+        .registerModule(new ParameterNamesModule())
+        .registerModule(new Jdk8Module())
+        .registerModule(new JavaTimeModule());
+    SubZone subZone = null;
+    try {
+      subZone = mapper.readValue(json, SubZone.class);
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+    zoneDbOp.addSubZone(subZone);
+    return Response.ok().build();
+  }
 
-    @POST
-    @Path("/parkometer")
-    public Response addParkometer( ){
-        zoneDbOp.addParkometer();
-        return Response.ok().build();
-    }
-    @GET
-    @Path("/parkometer")
-    @Produces(MediaType.APPLICATION_JSON)
-    public  List<Parkometer>  getParkometers( ){
-        return zoneDbOp.getAllParkometers();
-    }
+  @POST
+  @Path("/parkometer")
+  public Response addParkometer() {
+    zoneDbOp.addParkometer();
+    return Response.ok().build();
+  }
+
+  @GET
+  @Path("/parkometer")
+  @Produces(MediaType.APPLICATION_JSON)
+  public List<Parkometer> getParkometers() {
+    return zoneDbOp.getAllParkometers();
+  }
 
 }
 

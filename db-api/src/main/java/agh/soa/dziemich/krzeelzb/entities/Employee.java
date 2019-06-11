@@ -20,16 +20,17 @@ import javax.persistence.Table;
         name = "Employee.findOne",
         query = "SELECT emp FROM Employee emp WHERE id = :id"
     ),
-        @NamedQuery(
-                name = "Employee.deleteOne",
-                query = "DELETE Employee emp WHERE id = :id"
-        ),
-        @NamedQuery(
-                name = "Employee.findAll",
-                query = "SELECT emp FROM Employee emp"
-        ),
+    @NamedQuery(
+        name = "Employee.deleteOne",
+        query = "DELETE Employee emp WHERE id = :id"
+    ),
+    @NamedQuery(
+        name = "Employee.findAll",
+        query = "SELECT emp FROM Employee emp"
+    ),
 })
 public class Employee implements Serializable {
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "id", nullable = false, unique = true)

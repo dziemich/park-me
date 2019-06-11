@@ -26,7 +26,6 @@ public class QueueSender implements IQueueSender {
     System.out.println("sent expiration message with id: " + message);
   }
 
-
   @Override
   public void sendNewPlaceOccupiedMessage(String message) {
     String newPlaceOccupiedMessage = String.format("The place with id: %s has been taken", message);
@@ -52,5 +51,4 @@ public class QueueSender implements IQueueSender {
     TextMessage queueTextMessage = context.createTextMessage(expirationMessage);
     context.createProducer().send(queue, queueTextMessage);
   }
-
 }

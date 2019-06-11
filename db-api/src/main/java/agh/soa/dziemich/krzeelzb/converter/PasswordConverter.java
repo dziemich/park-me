@@ -11,9 +11,7 @@ public class PasswordConverter implements AttributeConverter<String, String> {
 
     byte[] hash = DigestUtils.sha1(password.getBytes());
 
-    String base64String = Base64.encodeBase64String(hash);
-
-    return base64String;
+    return Base64.encodeBase64String(hash);
   }
 
   @Override

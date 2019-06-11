@@ -26,7 +26,8 @@ public class ViewClient implements Serializable {
   public void checkSSE() {
     Long userId = userBean.getUserId();
     Client client = ClientBuilder.newClient();
-    WebTarget target = client.target("http://localhost:8080/detection/detect/detection/events/" + userId);
+    WebTarget target = client
+        .target("http://localhost:8080/detection/detect/detection/events/" + userId);
 
     try (SseEventSource eventSource = SseEventSource.target(target).build()) {
 

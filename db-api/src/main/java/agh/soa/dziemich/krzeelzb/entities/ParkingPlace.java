@@ -40,7 +40,7 @@ public class ParkingPlace implements Serializable {
   private String street;
   private Boolean taken;
   private Boolean expired;
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",shape = JsonFormat.Shape.STRING)
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", shape = JsonFormat.Shape.STRING)
   private LocalDateTime expirationTime;
 
   public ParkingPlace(long l, String nullo, boolean b, boolean b1, LocalDateTime of) {
@@ -101,6 +101,7 @@ public class ParkingPlace implements Serializable {
     this.taken = taken;
     this.expired = expired;
   }
+
   public ParkingPlace(String street) {
     this.street = street;
   }

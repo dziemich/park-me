@@ -18,7 +18,7 @@ public class QueueListener implements IQueueListener {
   @Resource(mappedName = "java:/jboss/exported/jms/queue/soa-queue")
   private Queue queue;
 
-  public String receiveMessage(){
+  public String receiveMessage() {
     String body = context.createConsumer(queue).receiveBody(String.class);
     return body;
   }

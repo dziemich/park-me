@@ -13,17 +13,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "parkometer")
 @NamedQueries({
-       @NamedQuery(
-                name = "Parkometer.findAll",
-                query = "SELECT p FROM Parkometer p"
-        ),
-        @NamedQuery(
-                name = "Parkometer.findOne",
-                query = "SELECT sz FROM Parkometer sz WHERE id = :id"
-        ),
+    @NamedQuery(
+        name = "Parkometer.findAll",
+        query = "SELECT p FROM Parkometer p"
+    ),
+    @NamedQuery(
+        name = "Parkometer.findOne",
+        query = "SELECT sz FROM Parkometer sz WHERE id = :id"
+    ),
 
 })
 public class Parkometer implements Serializable {
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "id", nullable = false, unique = true)
@@ -37,6 +38,6 @@ public class Parkometer implements Serializable {
     this.id = id;
   }
 
-    public Parkometer() {
-    }
+  public Parkometer() {
+  }
 }

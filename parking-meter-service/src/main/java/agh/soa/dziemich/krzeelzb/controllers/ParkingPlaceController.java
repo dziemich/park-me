@@ -20,10 +20,9 @@ public class ParkingPlaceController {
 
   @POST
   @Path("/{id}")
-  public Response addOne(@PathParam("id") Long id, ParkingPlaceModel ppm){
+  public Response addOne(@PathParam("id") Long id, ParkingPlaceModel ppm) {
     parkingMeterDbOp.markPlaceAsPaid(id, ppm.getDuration());
     queueSender.sendNewTicketBoughtMessage(id.toString());
     return Response.ok().build();
   }
-
 }

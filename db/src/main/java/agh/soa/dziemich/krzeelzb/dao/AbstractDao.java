@@ -4,9 +4,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
 public abstract class AbstractDao {
+
   protected EntityManager entityManager;
 
-  public AbstractDao(){
+  public AbstractDao() {
     entityManager = Persistence
         .createEntityManagerFactory("ParkingSystem")
         .createEntityManager();

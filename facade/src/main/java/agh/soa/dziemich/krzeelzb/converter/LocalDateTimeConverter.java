@@ -40,7 +40,8 @@ public class LocalDateTimeConverter implements Converter {
     try {
       return DateTimeFormatter.ofPattern(submittedValue, Locale.getDefault());
     } catch (DateTimeParseException e) {
-      throw new ConverterException(new FacesMessage(submittedValue + " is not a valid local date time"), e);
+      throw new ConverterException(
+          new FacesMessage(submittedValue + " is not a valid local date time"), e);
     }
   }
 }
