@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.github.adminfaces</groupId>
-	<artifactId>admin-showcase</artifactId>
+	<artifactId>facade</artifactId>
 	<!-- tag::version[] -->
 	<version>1.0.2</version>
 	<build>
@@ -21,14 +21,9 @@
 		</plugins>
 	</build>
 	<!-- end::version[] -->
-	<name>admin-showcase</name>
+	<name>facade</name>
 
 	<packaging>war</packaging>
-
-	<ciManagement>
-		<system>tranvis-ci.org</system>
-		<url>https://travis-ci.org/adminfaces/admin-showcase</url>
-	</ciManagement>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
