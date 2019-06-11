@@ -7,7 +7,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>agh.soa.dziemich.krzeelzb</groupId>
-  <artifactId>theatre</artifactId>
+  <artifactId>park-me</artifactId>
   <packaging>pom</packaging>
   <version>1.0</version>
 

@@ -6,6 +6,7 @@
 .DS_Store
 
 **/.idea/
+/.idea/
 **/build/
 **/out/
 **/target/

@@ -8,18 +8,18 @@ TODOs:
 - [x] Expired Parking Spots Detection
 - [x] Receiving messages
 - [x] JAAS add hashing
-- [ ] Frontend
+- [x] Frontend
 - [x] Modularization
 - [x] Database
 - [x] API
 - [x] HR Management (Employees)
 - [x] REST API for parking meteres
-- [ ] renaming parent module to parking system
+- [x] renaming parent module to parking system
 - [x] SOAP for parking places
 - [x] Zone Form
-- [ ] Displaying appropriate information based on user role
+- [x] Displaying appropriate information based on user role
 - [x] Displaying queue messages
-- [ ] Docs
+- [x] Docs
 - [x] Clearing settings
 - [x] Extending detection: new place taken, place has been freed, ticket has been bought
 - [x] Changing passwords
