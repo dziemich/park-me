@@ -16,7 +16,7 @@ TODOs:
 - [x] REST API for parking meteres
 - [ ] renaming parent module to parking system
 - [x] SOAP for parking places
-- [ ] Zone Form
+- [x] Zone Form
 - [ ] Displaying appropriate information based on user role
 - [x] Displaying queue messages
 - [ ] Docs

@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 
 import agh.soa.dziemich.krzeelzb.entities.SubZone;
 import agh.soa.dziemich.krzeelzb.services.IZoneDatabaseOperetionsService;
+import clojure.lang.IFn;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
@@ -131,6 +132,8 @@ public class EmployeeFormBean implements Serializable {
     }
 
     List<Long> allEmps=getEmployeeIds();
+    for (Long l:allEmps){
+    }
     allEmps.removeAll(empsWithZone);
     return allEmps;
 
