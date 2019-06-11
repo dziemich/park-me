@@ -1,4 +1,4 @@
-package agh.soa.dziemich.krzeelzb.mybeans;
+package agh.soa.dziemich.krzeelzb.bean;
 
 
 import java.io.Serializable;
