@@ -41,17 +41,15 @@
   </dependencyManagement>
 
   <modules>
-    <module>facade</module>
-    <module>server-api</module>
-    <module>client</module>
     <module>db</module>
     <module>db-api</module>
     <module>parking-meter-service</module>
     <module>detection</module>
     <module>public-api</module>
     <module>parking-places</module>
-    <module>admin-showcase</module>
+    <module>facade</module>
     <module>hr-management-service</module>
+    <module>queue-api</module>
     <module>queue</module>
   </modules>
 

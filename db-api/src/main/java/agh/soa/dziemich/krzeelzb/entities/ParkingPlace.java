@@ -102,4 +102,7 @@ public class ParkingPlace implements Serializable {
     this.taken = taken;
     this.expired = expired;
   }
+  public ParkingPlace(String street) {
+    this.street = street;
+  }
 }

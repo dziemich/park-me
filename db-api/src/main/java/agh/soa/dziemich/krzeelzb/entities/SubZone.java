@@ -60,6 +60,16 @@ public class SubZone implements Serializable {
     this.parkometers = parkometers;
     this.employees = employees;
   }
+  public SubZone(List<ParkingPlace> parkingPlaces, List<Parkometer> parkometers
+     ) {
+    this.parkingPlaces = parkingPlaces;
+    this.parkometers = parkometers;
+
+  }  public SubZone(List<ParkingPlace> parkingPlaces
+     ) {
+    this.parkingPlaces = parkingPlaces;
+
+  }
 
   public List<Employee> getEmployees() {
     return employees;
