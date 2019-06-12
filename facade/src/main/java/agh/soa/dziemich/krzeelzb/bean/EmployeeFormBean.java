@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
@@ -36,6 +37,9 @@ public class EmployeeFormBean implements Serializable {
 
   @EJB(lookup = "java:global/db/ZoneDatabaseOpertionsService")
   IZoneDatabaseOperetionsService zoneDbOp;
+
+  @Inject
+  UserBean userBean;
 
   public Long getId() {
     return id;
@@ -106,7 +110,7 @@ public class EmployeeFormBean implements Serializable {
   }
 
 
-  public List<Long> getEmployeeIds() throws IOException {
+  public List<String> getEmployeeIds() throws IOException {
     ResteasyClient client = new ResteasyClientBuilder().build();
     Response response = client.target("http://127.0.0.1:8080/hr-management-service/hr/employees")
         .request().get();
@@ -115,45 +119,16 @@ public class EmployeeFormBean implements Serializable {
     List<Employee> myObjects = mapper.readValue(jsonData, new TypeReference<List<Employee>>() {
     });
 
-    List<Long> empIds = new LinkedList<>();
+    List<String> empIds = new LinkedList<>();
     for (Employee emp : myObjects) {
-      empIds.add(emp.getId());
+      empIds.add(emp.getName());
 
     }
     return empIds;
   }
 
-  public List<Long> getEmployeeIdsWithoutZone() throws IOException {
-    List<SubZone> szIds = getSubZones();
-    System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-    List<Long> empsWithZone = new LinkedList<>();
-    for (SubZone sz : szIds) {
-      if (!sz.getEmployees().isEmpty()) {
-        for (Employee e : sz.getEmployees()) {
-          System.out.println(e.getId());
-          empsWithZone.add(e.getId());
-        }
-      }
-    }
-
-    List<Long> allEmps = getEmployeeIds();
-    for (Long l : allEmps) {
-    }
-    allEmps.removeAll(empsWithZone);
-    return allEmps;
-
-  }
-
-
-  public List<SubZone> getSubZones() throws IOException {
-//    ResteasyClient client = new ResteasyClientBuilder().build();
-//    Response response =  client.target("http://127.0.0.1:8080/hr-management-service/hr/subzones").request().get();
-//    String jsonData = response.readEntity(String.class);
-//    ObjectMapper mapper = new ObjectMapper();
-//    List<SubZone> myObjects = mapper.readValue(jsonData, new TypeReference<List<SubZone>>(){});
-
+  public List<SubZone> getSubZones() {
     return zoneDbOp.getAll();
-
   }
 
   public void addEmployee() throws IOException {
@@ -185,21 +160,22 @@ public class EmployeeFormBean implements Serializable {
       Response responseZone = target.request()
           .put(Entity.entity(jsonStringifiedZone, MediaType.APPLICATION_JSON));
     }
-
   }
 
   public void updatePassword() {
     ResteasyClient client = new ResteasyClientBuilder().build();
-    ResteasyWebTarget target = client
-        .target("http://127.0.0.1:8080/hr-management-service/hr/employees/" + id);
-    JSONObject jsonObject = new JSONObject()
-        .put("password", password);
+    Long userId = userBean.getUserId();
+    String uri = "http://127.0.0.1:8080/hr-management-service/hr/employees/" + userId;
+    if (userBean.getUserAdminPrivileges()) {
+      uri = "http://127.0.0.1:8080/hr-management-service/hr/employees/" + id;
+    }
+
+    ResteasyWebTarget target = client.target(uri);
+    JSONObject jsonObject = new JSONObject().put("password", password);
 
     String jsonStringified = jsonObject.toString();
 
     Response response = target.request()
         .put(Entity.entity(jsonStringified, MediaType.APPLICATION_JSON));
-
-
   }
 }

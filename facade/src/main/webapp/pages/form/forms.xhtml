@@ -49,7 +49,8 @@
                     <p:outputLabel for="input-pwd" value="password"/>
                     <p:password id="input-pwd" value="#{employeeFormBean.password}"/>
 
-                    <p:outputLabel for="zone-checkbox" value="admin"/>
+                    <p:outputLabel for="zone-checkbox" value="zoneless"/>
+                    <br/>
                     <p:selectBooleanCheckbox id="zone-checkbox" value="#{employeeFormBean.zone}"/>
                     <br/>
                     <p:outputLabel for="zone-select" value="Zone"/>
@@ -76,8 +77,8 @@
             <div class="ui-fluid">
                 <p:panel id="basic-change" header="Employee's Password Change Form">
 
-                    <p:outputLabel for="id-select" value="employee's id"/>
-                    <p:selectOneMenu id="id-select"  value="#{employeeFormBean.id}">
+                    <p:outputLabel rendered="#{userBean.getUserAdminPrivileges()}" for="id-select" value="employee's id"/>
+                    <p:selectOneMenu rendered="#{userBean.getUserAdminPrivileges()}" id="id-select"  value="#{employeeFormBean.id}">
                         <f:selectItems value="#{employeeFormBean.getEmployeeIds()}"/>
                     </p:selectOneMenu>
 

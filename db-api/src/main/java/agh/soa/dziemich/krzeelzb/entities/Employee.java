@@ -21,6 +21,10 @@ import javax.persistence.Table;
         query = "SELECT emp FROM Employee emp WHERE id = :id"
     ),
     @NamedQuery(
+        name = "Employee.findOneByName",
+        query = "SELECT emp FROM Employee emp WHERE name = :name"
+    ),
+    @NamedQuery(
         name = "Employee.deleteOne",
         query = "DELETE Employee emp WHERE id = :id"
     ),
@@ -36,6 +40,7 @@ public class Employee implements Serializable {
   @Column(name = "id", nullable = false, unique = true)
   private Long id;
   String name;
+  @Column(name = "login", nullable = false, unique = true)
   String login;
   @Convert(converter = PasswordConverter.class)
   String password;

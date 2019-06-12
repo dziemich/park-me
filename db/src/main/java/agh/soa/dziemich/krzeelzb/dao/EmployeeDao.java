@@ -24,6 +24,13 @@ public class EmployeeDao extends AbstractDao {
         .getResultList();
   }
 
+  public List<Employee> findOne(String name) {
+    return entityManager
+        .createNamedQuery("Employee.findOneByName", Employee.class)
+        .setParameter("name", name)
+        .getResultList();
+  }
+
   public List<Employee> findAll() {
     return entityManager
         .createNamedQuery("Employee.findAll", Employee.class)

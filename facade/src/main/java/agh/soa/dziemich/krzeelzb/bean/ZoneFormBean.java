@@ -29,7 +29,7 @@ import org.omnifaces.cdi.ViewScoped;
 public class ZoneFormBean implements Serializable {
 
   List<Employee> emps = new LinkedList<>();
-  List<Long> empsId;
+  List<String> empsId;
   List<ParkingPlace> parkingPlaces = new LinkedList<>();
   List<Long> parkingPlacesId;
   List<Parkometer> parkometers = new LinkedList<>();
@@ -80,9 +80,8 @@ public class ZoneFormBean implements Serializable {
   }
 
   public void addZone() {
-    for (Long e : empsId) {
-      System.out.println(userManagementDbOpService.findOne(e).get(0) + "ooooooooooooooo");
-      emps.add(userManagementDbOpService.findOne(e).get(0));
+    for (String s : empsId) {
+      emps.add(userManagementDbOpService.findOne(s).get(0));
     }
     for (Long p : parkingPlacesId) {
       System.out.println(parkingMeterDbOp.findOne(p).get(0));
@@ -124,11 +123,11 @@ public class ZoneFormBean implements Serializable {
     this.parkometers = parkometers;
   }
 
-  public List<Long> getEmpsId() {
+  public List<String> getEmpsId() {
     return empsId;
   }
 
-  public void setEmpsId(List<Long> empsId) {
+  public void setEmpsId(List<String> empsId) {
     this.empsId = empsId;
   }
 

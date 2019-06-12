@@ -32,6 +32,11 @@ public class UserManagementDatabaseOperationService implements
   }
 
   @Override
+  public List<Employee> findOne(String login) {
+    return employeeDao.findOne(login);
+  }
+
+  @Override
   public void addEmployee(Employee emp) {
     employeeDao.addEmployee(emp);
   }

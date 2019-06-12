@@ -10,6 +10,8 @@ public interface IUserManagementDatabaseOperationsService {
 
   List<Employee> findOne(Long id);
 
+  List<Employee> findOne(String login);
+
   void addEmployee(Employee emp);
 
   void updatePassword(Long id, String value);

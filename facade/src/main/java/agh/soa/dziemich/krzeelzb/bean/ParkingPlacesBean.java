@@ -117,8 +117,8 @@ public class ParkingPlacesBean implements Serializable {
 
   private boolean filterParkingPlaceByUser(Long empId, ParkingPlace pp) {
     List<SubZone> parkingPlacesSubZone = zoneDbOp.getParkingPlacesSubZone(pp.getId());
-    List<Employee> subZoneEmployees = parkingPlacesSubZone.get(0)
-        .getEmployees();
+    if(parkingPlacesSubZone.isEmpty()) return false;
+    List<Employee> subZoneEmployees = parkingPlacesSubZone.get(0).getEmployees();
     Optional<Employee> correctEmployee = subZoneEmployees
         .stream()
         .filter(emp -> emp.getId().equals(empId))
