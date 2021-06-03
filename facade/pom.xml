@@ -59,7 +59,7 @@
     <dependency>
       <groupId>org.jboss.resteasy</groupId>
       <artifactId>resteasy-client</artifactId>
-      <version>3.0.14.Final</version>
+      <version>4.5.7.Final</version>
     </dependency>
     <dependency>
       <groupId>com.github.adminfaces</groupId>
@@ -226,7 +226,7 @@
       <dependency>
         <groupId>org.jboss.resteasy</groupId>
         <artifactId>resteasy-client</artifactId>
-        <version>3.0.14.Final</version>
+        <version>4.5.7.Final</version>
       </dependency>
       <dependency>
         <groupId>org.jboss.resteasy</groupId>
@@ -257,7 +257,7 @@
       <dependency>
         <groupId>org.jboss.resteasy</groupId>
         <artifactId>resteasy-client</artifactId>
-        <version>3.0.17.Final</version>
+        <version>4.5.7.Final</version>
       </dependency>
       <dependency>
         <groupId>org.jboss.resteasy</groupId>
